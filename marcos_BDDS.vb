@@ -100,7 +100,7 @@ set Colunms_Group_specf                 = Range("C1:D1") 'столбцы гру�
 set Colunms_Group_producer              = Range("F1:H1") 'столбцы группа Производитель
 
 ' ---------------------- все кварталы ---------------------------------------
-set Columns_Group_1kvartal              = Range("R1:AC1") 'столбцы группа Аванс/Ок.расчет/Примечание для 1 квартала 2025г
+
 set Columns_Group_2kvartal              = Range("AL1:AW1") 'столбцы группа Аванс/Ок.расчет/Примечание для 2 квартала 2025г
 set Columns_Group_3kvartal              = Range("BF1:BQ1") 'столбцы группа Аванс/Ок.расчет/Примечание для 3 квартала 2025г
 set Columns_Group_4kvartal              = Range("BZ1:CK1") 'столбцы группа Аванс/Ок.расчет/Примечание для 4 квартала 2025г
@@ -111,47 +111,66 @@ set Column_need_plan_1kvartal           = Range("K1")  ' потребность-
 set Column_initial_warehouse_balance1kv = Range("L1")  ' столбец начальный складской остаток на 1 квартал 2025г
 set Column_plan_1kvartal                = Range("M1")  ' столбец план реализации 1 квартала 2025г
 set Column_need_1kvartal                = Range("N1")  ' потребность 1 квартала 2025г
-set Columns_jan_1kvartal                = Range("R1:T1") 'группа столбцов январь
-set Columns_feb_1kvartal                = Range("V1:X1") 'группа столбцов февраль
-set Columns_march_1kvartal              = Range("Z1:AB1") 'группа столбцов март
-
 set Column_buy_1kvartal                 = Range("O1")  ' в закупку 1 квартал 2025г
 set Column_outgo_1kvartal               = Range("P1")  ' расход 1 квартал 2025г
 set Column_final_warehouse_balance1kv   = Range("Q1")  ' конечный складской остаток 1 квартал 2025г
+set Columns_jan_1kvartal                = Range("R1:T1") 'группа столбцов январь
+set Columns_feb_1kvartal                = Range("V1:X1") 'группа столбцов февраль
+set Columns_march_1kvartal              = Range("Z1:AB1") 'группа столбцов март
+set Columns_Group_1kvartal              = Range("R1:AC1") 'столбцы группа Аванс/Ок.расчет/Примечание для 1 квартала 2025г
 
 ' ---------------------- 2 квартал ---------------------------------------
-set Column_need_plan_2kvartal           = Range("Y1")  ' потребность-план 2 квартала 2025г
-set Column_initial_warehouse_balance2kv = Range("Z1")  ' столбец начальный складской остаток на 2 квартал 2025г
-set Column_plan_2kvartal                = Range("AA1")  ' столбец план реализации 2 квартала 2025г
-set Column_need_2kvartal                = Range("AB1")  ' потребность 2 квартала 2025г
-set Columns_01_2kvartal                 = Range("Y1:AB1")
+set Column_need_plan_2kvartal           = Range("AE1")  ' потребность-план 2 квартала 2025г
+set Column_initial_warehouse_balance2kv = Range("AF1")  ' столбец начальный складской остаток на 2 квартал 2025г
+set Column_plan_2kvartal                = Range("AG1")  ' столбец план реализации 2 квартала 2025г
+set Column_need_2kvartal                = Range("AH1")  ' потребность 2 квартала 2025г
+set Column_buy_2kvartal                 = Range("AI1")  ' в закупку 2 квартал 2025г
+set Column_outgo_2kvartal               = Range("AJ1")  ' расход 2 квартал 2025г
+set Column_final_warehouse_balance2kv   = Range("AK1")  ' конечный складской остаток 2 квартал 2025г
+set Columns_aprl_2kvartal               = Range("AL1:AN1") 'группа столбцов апрель
+set Columns_may_2kvartal                = Range("AP1:AR1") 'группа столбцов май
+set Columns_june_2kvartal               = Range("AT1:AV1") 'группа столбцов июнь
+set Columns_Group_2kvartal              = Range("AL1:AW1") 'столбцы группа Аванс/Ок.расчет/Примечание для 2 квартала 2025г
 
-set Column_buy_2kvartal                 = Range("AC1")  ' в закупку 2 квартал 2025г
-set Column_outgo_2kvartal               = Range("AD1")  ' расход 2 квартал 2025г
-set Column_final_warehouse_balance2kv   = Range("AE1")  ' конечный складской остаток 2 квартал 2025г
-set Columns_02_2kvartal                 = Range("AD1:AE1")
 ' ---------------------- 3 квартал ---------------------------------------
-set Column_need_plan_3kvartal           = Range("AO1")  ' потребность-план 3 квартала 2025г
-set Column_initial_warehouse_balance3kv = Range("AP1")  ' столбец начальный складской остаток на 3 квартал 2025г
-set Column_plan_3kvartal                = Range("AQ1")  ' столбец план реализации 3 квартала 2025г
-set Column_need_3kvartal                = Range("AR1")  ' потребность 3 квартала 2025г
-set Columns_01_3kvartal                 = Range("AO1:AR1")
+set Column_need_plan_3kvartal           = Range("AY1")  ' потребность-план 3 квартала 2025г
+set Column_initial_warehouse_balance3kv = Range("AZ1")  ' столбец начальный складской остаток на 3 квартал 2025г
+set Column_plan_3kvartal                = Range("BA1")  ' столбец план реализации 3 квартала 2025г
+set Column_need_3kvartal                = Range("BB1")  ' потребность 3 квартала 2025г
+set Column_buy_3kvartal                 = Range("BC1")  ' в закупку 3 квартал 2025г
+set Column_outgo_3kvartal               = Range("BD1")  ' расход 3 квартал 2025г
+set Column_final_warehouse_balance3kv   = Range("BE1")  ' конечный складской остаток 3 квартал 2025г
+set Columns_jule_3kvartal               = Range("BF1:BH1") 'группа столбцов июль
+set Columns_augst_3kvartal              = Range("BJ1:BL1") 'группа столбцов август
+set Columns_sept_3kvartal               = Range("BN1:BP1") 'группа столбцов сентябрь
+set Columns_Group_3kvartal              = Range("BF1:BQ1") 'столбцы группа Аванс/Ок.расчет/Примечание для 3 квартала 2025г
 
-set Column_buy_3kvartal                 = Range("AS1")  ' в закупку 3 квартал 2025г
-set Column_outgo_3kvartal               = Range("AT1")  ' расход 3 квартал 2025г
-set Column_final_warehouse_balance3kv   = Range("AU1")  ' конечный складской остаток 3 квартал 2025г
-set Columns_02_3kvartal                 = Range("AT1:AU1")
 ' ---------------------- 4 квартал ---------------------------------------
-set Column_need_plan_4kvartal           = Range("BE1")  ' потребность-план 4 квартала 2025г
-set Column_initial_warehouse_balance4kv = Range("BF1")  ' столбец начальный складской остаток на 4 квартал 2025г
-set Column_plan_4kvartal                = Range("BG1")  ' столбец план реализации 4 квартала 2025г
-set Column_need_4kvartal                = Range("BH1")  ' потребность 4 квартала 2025г
-set Columns_01_4kvartal                 = Range("BE1:BH1")
+set Column_need_plan_4kvartal           = Range("BS1")  ' потребность-план 4 квартала 2025г
+set Column_initial_warehouse_balance4kv = Range("BT1")  ' столбец начальный складской остаток на 4 квартал 2025г
+set Column_plan_4kvartal                = Range("BU1")  ' столбец план реализации 4 квартала 2025г
+set Column_need_4kvartal                = Range("BV1")  ' потребность 4 квартала 2025г
+set Column_buy_4kvartal                 = Range("BW1")  ' в закупку 4 квартал 2025г
+set Column_outgo_4kvartal               = Range("BX1")  ' расход 4 квартал 2025г
+set Column_final_warehouse_balance4kv   = Range("BY1")  ' конечный складской остаток 4 квартал 2025г
+set Columns_oktr_4kvartal               = Range("BZ1:CB1") 'группа столбцов октябрь
+set Columns_nov_4kvartal                = Range("CD1:CF1") 'группа столбцов ноябрь
+set Columns_dec_4kvartal                = Range("CH1:CJ1") 'группа столбцов декабрь
+set Columns_Group_4kvartal              = Range("BZ1:CK1") 'столбцы группа Аванс/Ок.расчет/Примечание для 4 квартала 2025г
 
-set Column_buy_4kvartal                 = Range("BI1")  ' в закупку 4 квартал 2025г
-set Column_outgo_4kvartal               = Range("BJ1")  ' расход 4 квартал 2025г
-set Column_final_warehouse_balance4kv   = Range("BK1")  ' конечный складской остаток 4 квартал 2025г
-set Columns_02_4kvartal                 = Range("BJ1:BK1")
+' ---------------------- 1 квартал следующего года ---------------------------------------
+set Column_need_plan_next_kvartal           = Range("CM1")  ' потребность-план 1 квартала 2026г
+set Column_initial_warehouse_balance_next_kv = Range("CN1")  ' столбец начальный складской остаток на 1 квартал 2026г
+set Column_plan_next_kvartal                = Range("CO1")  ' столбец план реализации 1 квартала 2026г
+set Column_need_next_kvartal                = Range("CP1")  ' потребность 1 квартала 2026г
+set Column_buy_next_kvartal                 = Range("CQ1")  ' в закупку 1 квартал 2026г
+set Column_outgo_next_kvartal               = Range("CR1")  ' расход 1 квартал 2026г
+set Column_final_warehouse_balance_next_kv   = Range("CS1")  ' конечный складской остаток 1 квартал 2026г
+set Columns_jan_next_kvartal               = Range("CT1:CW1") 'группа столбцов январь
+set Columns_feb_next_kvartal                = Range("CX1:CZ1") 'группа столбцов февраль
+set Columns_march_next_kvartal                = Range("DB1:DD1") 'группа столбцов март
+set Columns_Group_next_kvartal              = Range("CT1:DE1") 'столбцы группа Аванс/Ок.расчет/Примечание для 1 квартала 2025г
+
 ' -----------------------------------
 
 ' constPathFile = Array( _
@@ -190,8 +209,6 @@ set Columns_02_4kvartal                 = Range("BJ1:BK1")
 '     'pathArch = "M:\ArchFolderMSKM\"
 ' Next
 
-
-
 ' разворачивание всех группированных столбцов
 ActiveSheet.Outline.ShowLevels ColumnLevels:=8
 
@@ -203,13 +220,84 @@ Range("A1:DM1").Ungroup
 Colunms_Group_specf.Group
 Colunms_Group_producer.Group
 
-' сгруппируем группы месяцев 1 квартала
+Range("J1").EntireColumn.Hidden = True
+Range("DG1:DM1").EntireColumn.Hidden = True
+
+' сгруппируем группы месяцев 1 квартала и группы месяцев 1 квартала
 Columns_jan_1kvartal.Group
 Columns_feb_1kvartal.Group
 Columns_march_1kvartal.Group
-
-' сгруппируем группы 1 квартала
 Columns_Group_1kvartal.Group
+' Скрываем ненужные для анализа БДДС столбцы
+Column_need_plan_1kvartal.EntireColumn.Hidden = True          
+Column_initial_warehouse_balance1kv.EntireColumn.Hidden = True
+Column_plan_1kvartal.EntireColumn.Hidden = True               
+Column_need_1kvartal.EntireColumn.Hidden = True               
+Column_outgo_1kvartal.EntireColumn.Hidden = True              
+Column_final_warehouse_balance1kv.EntireColumn.Hidden = True  
+
+
+' сгруппируем группы месяцев 2 квартала и группы месяцев 2 квартала
+Columns_aprl_2kvartal.Group 
+Columns_may_2kvartal.Group  
+Columns_june_2kvartal.Group 
+Columns_Group_2kvartal.Group
+' Скрываем ненужные для анализа БДДС столбцы
+Column_need_plan_2kvartal.EntireColumn.Hidden = True           
+Column_initial_warehouse_balance2kv.EntireColumn.Hidden = True 
+Column_plan_2kvartal.EntireColumn.Hidden = True                
+Column_need_2kvartal.EntireColumn.Hidden = True                
+Column_outgo_2kvartal.EntireColumn.Hidden = True               
+Column_final_warehouse_balance2kv.EntireColumn.Hidden = True   
+
+
+' сгруппируем группы месяцев 3 квартала и группы месяцев 3 квартала
+Columns_jule_3kvartal.Group 
+Columns_augst_3kvartal.Group
+Columns_sept_3kvartal.Group 
+Columns_Group_3kvartal.Group
+' Скрываем ненужные для анализа БДДС столбцы
+Column_need_plan_3kvartal.EntireColumn.Hidden = True           
+Column_initial_warehouse_balance3kv.EntireColumn.Hidden = True 
+Column_plan_3kvartal.EntireColumn.Hidden = True                
+Column_need_3kvartal.EntireColumn.Hidden = True                
+Column_outgo_3kvartal.EntireColumn.Hidden = True               
+Column_final_warehouse_balance3kv.EntireColumn.Hidden = True   
+
+
+' сгруппируем группы месяцев 4 квартала и группы месяцев 4 квартала
+Columns_oktr_4kvartal.Group 
+Columns_nov_4kvartal.Group  
+Columns_dec_4kvartal.Group  
+Columns_Group_4kvartal.Group
+' Скрываем ненужные для анализа БДДС столбцы
+Column_need_plan_4kvartal.EntireColumn.Hidden = True           
+Column_initial_warehouse_balance4kv.EntireColumn.Hidden = True 
+Column_plan_4kvartal.EntireColumn.Hidden = True                
+Column_need_4kvartal.EntireColumn.Hidden = True                
+Column_outgo_4kvartal.EntireColumn.Hidden = True               
+Column_final_warehouse_balance4kv.EntireColumn.Hidden = True   
+
+
+' сгруппируем группы месяцев 1 квартала след года и группы месяцев 1 квартала след года
+Columns_jan_next_kvartal.Group               
+Columns_feb_next_kvartal.Group                
+Columns_march_next_kvartal.Group              
+Columns_Group_next_kvartal.Group  
+' Скрываем ненужные для анализа БДДС столбцы
+Column_need_plan_next_kvartal.EntireColumn.Hidden = True            
+Column_initial_warehouse_balance_next_kv.EntireColumn.Hidden = True 
+Column_plan_next_kvartal.EntireColumn.Hidden = True                 
+Column_need_next_kvartal.EntireColumn.Hidden = True                  
+Column_outgo_next_kvartal.EntireColumn.Hidden = True               
+Column_final_warehouse_balance_next_kv.EntireColumn.Hidden = True   
+            
+
+
+
+
+
+
 
 ' закроем(свернем) все группы
 Worksheets("Детализация").Outline.ShowLevels 1, 1
