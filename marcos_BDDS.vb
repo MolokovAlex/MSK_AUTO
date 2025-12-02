@@ -1,4 +1,59 @@
 '==================================================================================================================================
+'============================================================     Режим Большой таблицы     ========================================
+'==================================================================================================================================
+'Макрос ВКЛючения режима отображеия Большой таблицы - без группировок столбцов
+' Форматирует таблицу 
+'in:
+' текущий лист книги
+'==================================================================================================================================
+Sub MSK_ON_BigTable()
+Dim password As String
+Dim good_password As String
+Dim MODE_BIG_TABLE As String
+MODE_BIG_TABLE = "Режим Большой таблицы"
+
+' Назначение столбцов
+' ---------------------- столбцы группы Спецификация --------------------------------------
+set Colunms_Group_specf                 = Range("C1:D1") 'столбцы группа Спецификации
+' ---------------------- столбцы группы Производителя --------------------------------------
+set Colunms_Group_producer              = Range("F1:H1") 'столбцы группа Производитель
+
+If Range("A1").Value = MODE_BIG_TABLE Then
+    MsgBox "Режим Большой таблицы уже применен. Макрос не запущен."
+    Exit Sub
+End If
+
+' введем защиту от случайного запуска макроса - нужно ввести пароль
+good_password = "987"
+password = InputBox("Введите пароль на запуск макроса (987):")
+If Not IsNumeric(password) Then
+    MsgBox "Пароль не верен - не число. Макрос не запущен."
+    Exit Sub
+End If
+If password <> good_password Then
+    MsgBox "Пароль не верен - не _верное_ число. Макрос не запущен."
+    Exit Sub
+End If
+
+' разворачивание всех группированных столбцов
+ActiveSheet.Outline.ShowLevels ColumnLevels:=8
+
+' отменим группировку всех столбцов
+Range("A1:DM1").Ungroup
+Range("A1:DM1").Ungroup
+
+' группируем группы Спецификации и Производитель
+Colunms_Group_specf.Group
+Colunms_Group_producer.Group
+
+' закроем(свернем) все группы
+Worksheets("Детализация").Outline.ShowLevels 1, 1
+
+Range("A1").Value = MODE_BIG_TABLE
+MsgBox "Работа макроса закончена"
+End Sub
+
+'==================================================================================================================================
 '============================================================     Режим БДДС       ========================================
 '==================================================================================================================================
 'Макрос ВКЛючения режима отображеия для среза БДДС
@@ -39,26 +94,31 @@ If password <> good_password Then
 End If
 
 ' Назначение столбцов
+' ---------------------- столбцы группы Спецификация --------------------------------------
+set Colunms_Group_specf                 = Range("C1:D1") 'столбцы группа Спецификации
+' ---------------------- столбцы группы Производителя --------------------------------------
+set Colunms_Group_producer              = Range("F1:H1") 'столбцы группа Производитель
+
 ' ---------------------- все кварталы ---------------------------------------
-set Colunms_Group_producer              = Range("F1:G1") 'столбцы группа Производитель, Входимость в специф..
-set Columns_Group_1kvartal              = Range("P1:X1") 'столбцы группа Аванс/Ок.расчет/Примечание для 1 квартала 2025г
-set Columns_Group_2kvartal              = Range("AF1:AN1") 'столбцы группа Аванс/Ок.расчет/Примечание для 2 квартала 2025г
-set Columns_Group_3kvartal              = Range("AV1:BD1") 'столбцы группа Аванс/Ок.расчет/Примечание для 3 квартала 2025г
-set Columns_Group_4kvartal              = Range("BL1:BT1") 'столбцы группа Аванс/Ок.расчет/Примечание для 4 квартала 2025г
-' ---------------------- все кварталы - состояние послед преобразования --------------------------------------
-set Colunms_Group_producer_after        = Range("C1:G1") 'столбцы группа Производитель, Входимость в специф..
+set Columns_Group_1kvartal              = Range("R1:AC1") 'столбцы группа Аванс/Ок.расчет/Примечание для 1 квартала 2025г
+set Columns_Group_2kvartal              = Range("AL1:AW1") 'столбцы группа Аванс/Ок.расчет/Примечание для 2 квартала 2025г
+set Columns_Group_3kvartal              = Range("BF1:BQ1") 'столбцы группа Аванс/Ок.расчет/Примечание для 3 квартала 2025г
+set Columns_Group_4kvartal              = Range("BZ1:CK1") 'столбцы группа Аванс/Ок.расчет/Примечание для 4 квартала 2025г
+
 
 ' ---------------------- 1 квартал ---------------------------------------
-set Column_need_plan_1kvartal           = Range("I1")  ' потребность-план 1 квартала 2025г
-set Column_initial_warehouse_balance1kv = Range("J1")  ' столбец начальный складской остаток на 1 квартал 2025г
-set Column_plan_1kvartal                = Range("K1")  ' столбец план реализации 1 квартала 2025г
-set Column_need_1kvartal                = Range("L1")  ' потребность 1 квартала 2025г
-set Columns_01_1kvartal                 = Range("I1:L1")
+set Column_need_plan_1kvartal           = Range("K1")  ' потребность-план 1 квартала 2025г
+set Column_initial_warehouse_balance1kv = Range("L1")  ' столбец начальный складской остаток на 1 квартал 2025г
+set Column_plan_1kvartal                = Range("M1")  ' столбец план реализации 1 квартала 2025г
+set Column_need_1kvartal                = Range("N1")  ' потребность 1 квартала 2025г
+set Columns_jan_1kvartal                = Range("R1:T1") 'группа столбцов январь
+set Columns_feb_1kvartal                = Range("V1:X1") 'группа столбцов февраль
+set Columns_march_1kvartal              = Range("Z1:AB1") 'группа столбцов март
 
-set Column_buy_1kvartal                 = Range("M1")  ' в закупку 1 квартал 2025г
-set Column_outgo_1kvartal               = Range("N1")  ' расход 1 квартал 2025г
-set Column_final_warehouse_balance1kv   = Range("O1")  ' конечный складской остаток 1 квартал 2025г
-set Columns_02_1kvartal                 = Range("N1:O1")
+set Column_buy_1kvartal                 = Range("O1")  ' в закупку 1 квартал 2025г
+set Column_outgo_1kvartal               = Range("P1")  ' расход 1 квартал 2025г
+set Column_final_warehouse_balance1kv   = Range("Q1")  ' конечный складской остаток 1 квартал 2025г
+
 ' ---------------------- 2 квартал ---------------------------------------
 set Column_need_plan_2kvartal           = Range("Y1")  ' потребность-план 2 квартала 2025г
 set Column_initial_warehouse_balance2kv = Range("Z1")  ' столбец начальный складской остаток на 2 квартал 2025г
@@ -130,30 +190,59 @@ set Columns_02_4kvartal                 = Range("BJ1:BK1")
 '     'pathArch = "M:\ArchFolderMSKM\"
 ' Next
 
+
+
 ' разворачивание всех группированных столбцов
 ActiveSheet.Outline.ShowLevels ColumnLevels:=8
 
+' отменим группировку всех столбцов
+Range("A1:DM1").Ungroup
+
+
+' группируем группы Спецификации и Производитель
+Colunms_Group_specf.Group
+Colunms_Group_producer.Group
+
+' сгруппируем группы месяцев 1 квартала
+Columns_jan_1kvartal.Group
+Columns_feb_1kvartal.Group
+Columns_march_1kvartal.Group
+
+' сгруппируем группы 1 квартала
+Columns_Group_1kvartal.Group
+
+' закроем(свернем) все группы
+Worksheets("Детализация").Outline.ShowLevels 1, 1
+
+
+
+
+
+
+
+
+
+
 ' снимаем группировку со столбцов Аванс/Ок.расчет/Примечание для 1,2,3,4 кварталов
-Colunms_Group_producer.Ungroup
-Columns_Group_1kvartal.Ungroup
-Columns_Group_2kvartal.Ungroup
-Columns_Group_3kvartal.Ungroup
-Columns_Group_4kvartal.Ungroup
+' Columns_Group_1kvartal.Ungroup
+' Columns_Group_2kvartal.Ungroup
+' Columns_Group_3kvartal.Ungroup
+' Columns_Group_4kvartal.Ungroup
 ' Скрываем ненужные для анализа БДДС столбцы
-Columns_01_1kvartal.EntireColumn.Hidden = True
-Columns_02_1kvartal.EntireColumn.Hidden = True
-Columns_01_2kvartal.EntireColumn.Hidden = True
-Columns_02_2kvartal.EntireColumn.Hidden = True
-Columns_01_3kvartal.EntireColumn.Hidden = True
-Columns_02_3kvartal.EntireColumn.Hidden = True
-Columns_01_4kvartal.EntireColumn.Hidden = True
-Columns_02_4kvartal.EntireColumn.Hidden = True
+' Columns_01_1kvartal.EntireColumn.Hidden = True
+' Columns_02_1kvartal.EntireColumn.Hidden = True
+' Columns_01_2kvartal.EntireColumn.Hidden = True
+' Columns_02_2kvartal.EntireColumn.Hidden = True
+' Columns_01_3kvartal.EntireColumn.Hidden = True
+' Columns_02_3kvartal.EntireColumn.Hidden = True
+' Columns_01_4kvartal.EntireColumn.Hidden = True
+' Columns_02_4kvartal.EntireColumn.Hidden = True
 
 ' закроем(свернем) все группы
 ' Worksheets("Детализация").Outline.ShowLevels 1, 1
 
 ' перегруппируем столбцы по вхождению в спецификации, поставщика и т.п.
-Colunms_Group_producer_after.Group
+' Colunms_Group_producer_after.Group
 
 ' высвобождаем память на вякий случай
 ' set Columns_Group_1kvartal              = Nothing
