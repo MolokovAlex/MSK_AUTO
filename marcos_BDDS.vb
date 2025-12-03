@@ -1,16 +1,16 @@
 Sub ExpandAll()
 'UpdatebyExtendoffice20181031
-    ' Dim I As Integer
+    Dim I As Integer
     Dim J As Integer
    
     On Error Resume Next
-    ' For I = 1 To 100
-    '     Worksheets("Sheet1").Outline.ShowLevels rowLevels:=I
-    '     If Err.Number <> 0 Then
-    '         Err.Clear
-    '         Exit For
-    '     End If
-    ' Next I
+    For I = 1 To 100
+        Worksheets("Детализация").Outline.ShowLevels rowLevels:=I
+        If Err.Number <> 0 Then
+            Err.Clear
+            Exit For
+        End If
+    Next I
     For J = 1 To 100
         Worksheets("Детализация").Outline.ShowLevels columnLevels:=J
         If Err.Number <> 0 Then
@@ -31,6 +31,8 @@ Sub UngroupAll()
             Exit For
         End If
     Next J
+
+    Range("1:700").Ungroup
 End Sub
 
 
@@ -341,6 +343,36 @@ Column_need_next_kvartal.EntireColumn.Hidden = True
 Column_outgo_next_kvartal.EntireColumn.Hidden = True               
 Column_final_warehouse_balance_next_kv.EntireColumn.Hidden = True   
             
+'скрытие строк
+Rows("6:10").Hidden = True
+Rows("12:16").Hidden = True
+Rows("25:28").Hidden = True
+Rows("31:32").Hidden = True
+Rows("38:46").Hidden = True
+Rows("50:52").Hidden = True
+Rows("54").Hidden = True
+Rows("56:57").Hidden = True
+Rows("60:68").Hidden = True
+Rows("77").Hidden = True
+Rows("86:89").Hidden = True
+Rows("95").Hidden = True
+Rows("98:99").Hidden = True
+Rows("104:105").Hidden = True
+Rows("108:109").Hidden = True
+Rows("112").Hidden = True
+Rows("116:118").Hidden = True
+Rows("128").Hidden = True
+Rows("130:132").Hidden = True
+Rows("136:137").Hidden = True
+Rows("139").Hidden = True
+Rows("141").Hidden = True
+Rows("147").Hidden = True
+Rows("149").Hidden = True
+Rows("155").Hidden = True
+Rows("157:158").Hidden = True
+
+
+
 
 ' закроем(свернем) все группы
 Worksheets("Детализация").Outline.ShowLevels 1, 1
