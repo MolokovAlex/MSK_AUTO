@@ -1,3 +1,59 @@
+Sub ExpandAll()
+'UpdatebyExtendoffice20181031
+    ' Dim I As Integer
+    Dim J As Integer
+   
+    On Error Resume Next
+    ' For I = 1 To 100
+    '     Worksheets("Sheet1").Outline.ShowLevels rowLevels:=I
+    '     If Err.Number <> 0 Then
+    '         Err.Clear
+    '         Exit For
+    '     End If
+    ' Next I
+    For J = 1 To 100
+        Worksheets("Детализация").Outline.ShowLevels columnLevels:=J
+        If Err.Number <> 0 Then
+            Err.Clear
+            Exit For
+        End If
+    Next J
+End Sub
+
+Sub UngroupAll()
+    Dim J As Integer
+   
+    On Error Resume Next
+    For J = 1 To 6
+        Range("A1:DM1").Ungroup
+        If Err.Number <> 0 Then
+            Err.Clear
+            Exit For
+        End If
+    Next J
+End Sub
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 '==================================================================================================================================
 '============================================================     Режим Большой таблицы     ========================================
 '==================================================================================================================================
@@ -7,21 +63,18 @@
 ' текущий лист книги
 '==================================================================================================================================
 Sub MSK_ON_BigTable()
+
 Dim password As String
 Dim good_password As String
 Dim MODE_BIG_TABLE As String
 MODE_BIG_TABLE = "Режим Большой таблицы"
 
-' Назначение столбцов
-' ---------------------- столбцы группы Спецификация --------------------------------------
-set Colunms_Group_specf                 = Range("C1:D1") 'столбцы группа Спецификации
-' ---------------------- столбцы группы Производителя --------------------------------------
-set Colunms_Group_producer              = Range("F1:H1") 'столбцы группа Производитель
 
-If Range("A1").Value = MODE_BIG_TABLE Then
-    MsgBox "Режим Большой таблицы уже применен. Макрос не запущен."
-    Exit Sub
-End If
+
+' If Range("A1").Value = MODE_BIG_TABLE Then
+'     MsgBox "Режим Большой таблицы уже применен. Макрос не запущен."
+'     Exit Sub
+' End If
 
 ' введем защиту от случайного запуска макроса - нужно ввести пароль
 good_password = "987"
@@ -36,22 +89,52 @@ If password <> good_password Then
 End If
 
 ' разворачивание всех группированных столбцов
-ActiveSheet.Outline.ShowLevels ColumnLevels:=8
+' Worksheets("Детализация").Outline.ShowLevels 6, 6
+' ActiveSheet.Cells.ClearOutline
+ExpandAll
+
+Range("A1:DM1").EntireColumn.Hidden = False
+
 
 ' отменим группировку всех столбцов
-Range("A1:DM1").Ungroup
-Range("A1:DM1").Ungroup
+' Range("A1:DM1").Ungroup
+' Range("A1:DM1").Ungroup
+UngroupAll
 
+' ---------------------- столбцы группы Спецификация --------------------------------------
+set Colunms_Group_specf                 = Range("C1:D1") 'столбцы группа Спецификации
+' ---------------------- столбцы группы Производителя --------------------------------------
+set Colunms_Group_producer              = Range("F1:H1") 'столбцы группа Производитель
 ' группируем группы Спецификации и Производитель
-Colunms_Group_specf.Group
-Colunms_Group_producer.Group
+' Colunms_Group_specf.Group
+' Colunms_Group_producer.Group
 
 ' закроем(свернем) все группы
-Worksheets("Детализация").Outline.ShowLevels 1, 1
+' Worksheets("Детализация").Outline.ShowLevels 1, 1
 
 Range("A1").Value = MODE_BIG_TABLE
 MsgBox "Работа макроса закончена"
 End Sub
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 '==================================================================================================================================
 '============================================================     Режим БДДС       ========================================
@@ -63,12 +146,6 @@ End Sub
 '==================================================================================================================================
 
 Sub MSK_ON_BDDS()
-
-Dim constPathFile As Variant
-Dim pathSearchFile As Variant
-Dim listHiddenColumn As Variant
-Dim element As Variant
-Dim pathArch As String
 
 Dim password As String
 Dim good_password As String
@@ -94,6 +171,8 @@ If password <> good_password Then
 End If
 
 ' Назначение столбцов
+' TODO -  вывести эти диапазоны как константы и сделать функции скрытия столбцов, пердавая туда константы как архив
+' и тогда не надо в каждой функции дублировать эти  SET-ы
 ' ---------------------- столбцы группы Спецификация --------------------------------------
 set Colunms_Group_specf                 = Range("C1:D1") 'столбцы группа Спецификации
 ' ---------------------- столбцы группы Производителя --------------------------------------
@@ -165,56 +244,26 @@ set Column_plan_next_kvartal                = Range("CO1")  ' столбец п�
 set Column_need_next_kvartal                = Range("CP1")  ' потребность 1 квартала 2026г
 set Column_buy_next_kvartal                 = Range("CQ1")  ' в закупку 1 квартал 2026г
 set Column_outgo_next_kvartal               = Range("CR1")  ' расход 1 квартал 2026г
-set Column_final_warehouse_balance_next_kv   = Range("CS1")  ' конечный складской остаток 1 квартал 2026г
-set Columns_jan_next_kvartal               = Range("CT1:CW1") 'группа столбцов январь
+set Column_final_warehouse_balance_next_kv  = Range("CS1")  ' конечный складской остаток 1 квартал 2026г
+set Columns_jan_next_kvartal                = Range("CT1:CV1") 'группа столбцов январь
 set Columns_feb_next_kvartal                = Range("CX1:CZ1") 'группа столбцов февраль
-set Columns_march_next_kvartal                = Range("DB1:DD1") 'группа столбцов март
+set Columns_march_next_kvartal              = Range("DB1:DD1") 'группа столбцов март
 set Columns_Group_next_kvartal              = Range("CT1:DE1") 'столбцы группа Аванс/Ок.расчет/Примечание для 1 квартала 2025г
 
 ' -----------------------------------
 
-' constPathFile = Array( _
-' "S:\НТЦ\ПРО\ВЫПУСК ПРОДУКЦИИ\Оборудование\Выпуск ПО\Заводские номера ПО.mdb", _
-' "S:\НТЦ\ПРО\ВЫПУСК ПРОДУКЦИИ\Учет сертифицированной продукции\Оборудование\БазаШ5Л\БазаШ5Л.accdb", _
-' "S:\НТЦ\ПРО\ВЫПУСК ПРОДУКЦИИ\Учет сертифицированной продукции\Оборудование\БазаШ3\БазаШ3.accdb", _
-' "S:\НТЦ\ПРО\ВЫПУСК ПРОДУКЦИИ\Оборудование\Выпуск продукции\Журнал учета выпуска продукции\Журнал учёта выпуска продукции.xlsx", _
-' "S:\НТЦ\ПРО\ВЫПУСК ПРОДУКЦИИ\Учет сертифицированной продукции\Оборудование\Сертификация_ФСТЭК_25.01.31.xls", _
-' "S:\НТЦ\ПРО\ВЫПУСК ПРОДУКЦИИ\Учет сертифицированной продукции\Оборудование\Система Шорох-3_ФСБ_25.04.17.xls" _
-' )
-
-' pathSearchFileXLSX = Array( _
-' "S:\НТЦ\ПРО\ВЫПУСК ПРОДУКЦИИ\Планирование\Возможность выпуска Шорох-3\", _
-' "S:\НТЦ\ПРО\ВЫПУСК ПРОДУКЦИИ\Планирование\Возможность выпуска Шорох-5Л\", _
-' "S:\НТЦ\ПРО\ВЫПУСК ПРОДУКЦИИ\Планирование\Возможность выпуска Телефон-Н2\", _
-' "S:\НТЦ\ПРО\ВЫПУСК ПРОДУКЦИИ\Планирование\Выпуск продукции\", _
-' "S:\НТЦ\Заявки\Производство\2025\", _
-' "S:\НТЦ\ПРО\ВЫПУСК ПРОДУКЦИИ\Планирование\План платежей\2025\", _
-' "S:\НТЦ\ПРО\ВЫПУСК ПРОДУКЦИИ\Планирование\Возможность выпуска Старкад\", _
-' "S:\НТЦ\ПРО\ВЫПУСК ПРОДУКЦИИ\Планирование\Возможность выпуска Систем\", _
-' "P:\ДО_ПрО–ДКР_ЛабСП\График проведения СП\" _
-' )
-
-' listHiddenColumn = Array("I1:L1", _
-' "N1:O1", _
-' "Z1:AB1" _
-' )
-
-
-'Range("I1:L1").EntireColumn.Hidden = False
-'Range("N1:O1").EntireColumn.Hidden = Fasle
-'Range("Y1:AB1").EntireColumn.Hidden = False
-
-' For Each element In listHiddenColumn
-'     Range(element).EntireColumn.Hidden = True
-'     'pathArch = "M:\ArchFolderMSKM\"
-' Next
 
 ' разворачивание всех группированных столбцов
-ActiveSheet.Outline.ShowLevels ColumnLevels:=8
+' ActiveSheet.Outline.ShowLevels ColumnLevels:=1
+' Worksheets("Детализация").Outline.ShowLevels 6, 6
+ExpandAll
+
+Range("A1:DM1").EntireColumn.Hidden = False
 
 ' отменим группировку всех столбцов
-Range("A1:DM1").Ungroup
-
+' Range("A1:DM1").Ungroup
+' Range("A1:DM1").Ungroup
+UngroupAll
 
 ' группируем группы Спецификации и Производитель
 Colunms_Group_specf.Group
@@ -293,45 +342,10 @@ Column_outgo_next_kvartal.EntireColumn.Hidden = True
 Column_final_warehouse_balance_next_kv.EntireColumn.Hidden = True   
             
 
-
-
-
-
-
-
 ' закроем(свернем) все группы
 Worksheets("Детализация").Outline.ShowLevels 1, 1
 
-
-
-
-
-
-
-
-
-
-' снимаем группировку со столбцов Аванс/Ок.расчет/Примечание для 1,2,3,4 кварталов
-' Columns_Group_1kvartal.Ungroup
-' Columns_Group_2kvartal.Ungroup
-' Columns_Group_3kvartal.Ungroup
-' Columns_Group_4kvartal.Ungroup
-' Скрываем ненужные для анализа БДДС столбцы
-' Columns_01_1kvartal.EntireColumn.Hidden = True
-' Columns_02_1kvartal.EntireColumn.Hidden = True
-' Columns_01_2kvartal.EntireColumn.Hidden = True
-' Columns_02_2kvartal.EntireColumn.Hidden = True
-' Columns_01_3kvartal.EntireColumn.Hidden = True
-' Columns_02_3kvartal.EntireColumn.Hidden = True
-' Columns_01_4kvartal.EntireColumn.Hidden = True
-' Columns_02_4kvartal.EntireColumn.Hidden = True
-
-' закроем(свернем) все группы
-' Worksheets("Детализация").Outline.ShowLevels 1, 1
-
-' перегруппируем столбцы по вхождению в спецификации, поставщика и т.п.
-' Colunms_Group_producer_after.Group
-
+' TODO - подумать как высвобождать память от SET-ов и нужно ли это вообще
 ' высвобождаем память на вякий случай
 ' set Columns_Group_1kvartal              = Nothing
 ' set Columns_Group_2kvartal              = Nothing
@@ -350,6 +364,254 @@ Worksheets("Детализация").Outline.ShowLevels 1, 1
 Range("A1").Value = MODE_BDDS
 MsgBox "Работа макроса закончена"
 End Sub
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'==================================================================================================================================
+'============================================================    Режим Ввод Данных из Выпуска Продукции   ========================================
+'==================================================================================================================================
+'Макрос ВКЛючения режима Режим Ввод Данных из Выпуска Продукции
+' Форматирует таблицу для режима отображения Режим Ввод Данных из Выпуска Продукции
+'in:
+' текущий лист книги
+'==================================================================================================================================
+
+Sub MSK_ON_INPUT_DATA()
+
+Dim password As String
+Dim good_password As String
+
+Dim MODE_MODE_INPUT_DATA As String
+MODE_MODE_INPUT_DATA = "Режим Ввод Данных из Выпуска Продукции"
+
+If Range("A1").Value = MODE_MODE_INPUT_DATA Then
+    MsgBox "Режим Ввод Данных из Выпуска Продукции уже применен. Макрос не запущен."
+    Exit Sub
+End If
+
+' введем защиту от случайного запуска макроса - нужно ввести пароль
+good_password = "987"
+password = InputBox("Введите пароль на запуск макроса (987):")
+If Not IsNumeric(password) Then
+    MsgBox "Пароль не верен - не число. Макрос не запущен."
+    Exit Sub
+End If
+If password <> good_password Then
+    MsgBox "Пароль не верен - не _верное_ число. Макрос не запущен."
+    Exit Sub
+End If
+
+' Назначение столбцов
+' TODO -  вывести эти диапазоны как константы и сделать функции скрытия столбцов, пердавая туда константы как архив
+' и тогда не надо в каждой функции дублировать эти  SET-ы
+' ---------------------- столбцы группы Спецификация --------------------------------------
+set Colunms_Group_specf                 = Range("C1:D1") 'столбцы группа Спецификации
+' ---------------------- столбцы группы Производителя --------------------------------------
+set Colunms_Group_producer              = Range("F1:H1") 'столбцы группа Производитель
+
+' ---------------------- все кварталы ---------------------------------------
+
+set Columns_Group_2kvartal              = Range("AL1:AW1") 'столбцы группа Аванс/Ок.расчет/Примечание для 2 квартала 2025г
+set Columns_Group_3kvartal              = Range("BF1:BQ1") 'столбцы группа Аванс/Ок.расчет/Примечание для 3 квартала 2025г
+set Columns_Group_4kvartal              = Range("BZ1:CK1") 'столбцы группа Аванс/Ок.расчет/Примечание для 4 квартала 2025г
+
+
+' ---------------------- 1 квартал ---------------------------------------
+set Column_need_plan_1kvartal           = Range("K1")  ' потребность-план 1 квартала 2025г
+set Column_initial_warehouse_balance1kv = Range("L1")  ' столбец начальный складской остаток на 1 квартал 2025г
+set Column_plan_1kvartal                = Range("M1")  ' столбец план реализации 1 квартала 2025г
+set Column_need_1kvartal                = Range("N1")  ' потребность 1 квартала 2025г
+set Column_buy_1kvartal                 = Range("O1")  ' в закупку 1 квартал 2025г
+set Column_outgo_1kvartal               = Range("P1")  ' расход 1 квартал 2025г
+set Column_final_warehouse_balance1kv   = Range("Q1")  ' конечный складской остаток 1 квартал 2025г
+set Columns_jan_1kvartal                = Range("R1:T1") 'группа столбцов январь
+set Columns_feb_1kvartal                = Range("V1:X1") 'группа столбцов февраль
+set Columns_march_1kvartal              = Range("Z1:AB1") 'группа столбцов март
+set Columns_Group_1kvartal              = Range("R1:AC1") 'столбцы группа Аванс/Ок.расчет/Примечание для 1 квартала 2025г
+
+' ---------------------- 2 квартал ---------------------------------------
+set Column_need_plan_2kvartal           = Range("AE1")  ' потребность-план 2 квартала 2025г
+set Column_initial_warehouse_balance2kv = Range("AF1")  ' столбец начальный складской остаток на 2 квартал 2025г
+set Column_plan_2kvartal                = Range("AG1")  ' столбец план реализации 2 квартала 2025г
+set Column_need_2kvartal                = Range("AH1")  ' потребность 2 квартала 2025г
+set Column_buy_2kvartal                 = Range("AI1")  ' в закупку 2 квартал 2025г
+set Column_outgo_2kvartal               = Range("AJ1")  ' расход 2 квартал 2025г
+set Column_final_warehouse_balance2kv   = Range("AK1")  ' конечный складской остаток 2 квартал 2025г
+set Columns_aprl_2kvartal               = Range("AL1:AN1") 'группа столбцов апрель
+set Columns_may_2kvartal                = Range("AP1:AR1") 'группа столбцов май
+set Columns_june_2kvartal               = Range("AT1:AV1") 'группа столбцов июнь
+set Columns_Group_2kvartal              = Range("AL1:AW1") 'столбцы группа Аванс/Ок.расчет/Примечание для 2 квартала 2025г
+
+' ---------------------- 3 квартал ---------------------------------------
+set Column_need_plan_3kvartal           = Range("AY1")  ' потребность-план 3 квартала 2025г
+set Column_initial_warehouse_balance3kv = Range("AZ1")  ' столбец начальный складской остаток на 3 квартал 2025г
+set Column_plan_3kvartal                = Range("BA1")  ' столбец план реализации 3 квартала 2025г
+set Column_need_3kvartal                = Range("BB1")  ' потребность 3 квартала 2025г
+set Column_buy_3kvartal                 = Range("BC1")  ' в закупку 3 квартал 2025г
+set Column_outgo_3kvartal               = Range("BD1")  ' расход 3 квартал 2025г
+set Column_final_warehouse_balance3kv   = Range("BE1")  ' конечный складской остаток 3 квартал 2025г
+set Columns_jule_3kvartal               = Range("BF1:BH1") 'группа столбцов июль
+set Columns_augst_3kvartal              = Range("BJ1:BL1") 'группа столбцов август
+set Columns_sept_3kvartal               = Range("BN1:BP1") 'группа столбцов сентябрь
+set Columns_Group_3kvartal              = Range("BF1:BQ1") 'столбцы группа Аванс/Ок.расчет/Примечание для 3 квартала 2025г
+
+' ---------------------- 4 квартал ---------------------------------------
+set Column_need_plan_4kvartal           = Range("BS1")  ' потребность-план 4 квартала 2025г
+set Column_initial_warehouse_balance4kv = Range("BT1")  ' столбец начальный складской остаток на 4 квартал 2025г
+set Column_plan_4kvartal                = Range("BU1")  ' столбец план реализации 4 квартала 2025г
+set Column_need_4kvartal                = Range("BV1")  ' потребность 4 квартала 2025г
+set Column_buy_4kvartal                 = Range("BW1")  ' в закупку 4 квартал 2025г
+set Column_outgo_4kvartal               = Range("BX1")  ' расход 4 квартал 2025г
+set Column_final_warehouse_balance4kv   = Range("BY1")  ' конечный складской остаток 4 квартал 2025г
+set Columns_oktr_4kvartal               = Range("BZ1:CB1") 'группа столбцов октябрь
+set Columns_nov_4kvartal                = Range("CD1:CF1") 'группа столбцов ноябрь
+set Columns_dec_4kvartal                = Range("CH1:CJ1") 'группа столбцов декабрь
+set Columns_Group_4kvartal              = Range("BZ1:CK1") 'столбцы группа Аванс/Ок.расчет/Примечание для 4 квартала 2025г
+
+' ---------------------- 1 квартал следующего года ---------------------------------------
+set Column_need_plan_next_kvartal           = Range("CM1")  ' потребность-план 1 квартала 2026г
+set Column_initial_warehouse_balance_next_kv = Range("CN1")  ' столбец начальный складской остаток на 1 квартал 2026г
+set Column_plan_next_kvartal                = Range("CO1")  ' столбец план реализации 1 квартала 2026г
+set Column_need_next_kvartal                = Range("CP1")  ' потребность 1 квартала 2026г
+set Column_buy_next_kvartal                 = Range("CQ1")  ' в закупку 1 квартал 2026г
+set Column_outgo_next_kvartal               = Range("CR1")  ' расход 1 квартал 2026г
+set Column_final_warehouse_balance_next_kv   = Range("CS1")  ' конечный складской остаток 1 квартал 2026г
+set Columns_jan_next_kvartal                = Range("CT1:CV1") 'группа столбцов январь
+set Columns_feb_next_kvartal                = Range("CX1:CZ1") 'группа столбцов февраль
+set Columns_march_next_kvartal                = Range("DB1:DD1") 'группа столбцов март
+set Columns_Group_next_kvartal              = Range("CT1:DE1") 'столбцы группа Аванс/Ок.расчет/Примечание для 1 квартала 2025г
+
+' -----------------------------------
+
+
+' разворачивание всех группированных столбцов
+' ActiveSheet.Outline.ShowLevels ColumnLevels:=1
+' Worksheets("Детализация").Outline.ShowLevels 6, 6
+ExpandAll
+
+Range("A1:DM1").EntireColumn.Hidden = False
+
+' отменим группировку всех столбцов
+' Range("A1:DM1").Ungroup
+' Range("A1:DM1").Ungroup
+UngroupAll
+
+
+' группируем группы Спецификации и Производитель
+Colunms_Group_specf.Group
+Colunms_Group_producer.Group
+
+Range("J1").EntireColumn.Hidden = True
+Range("DG1:DM1").EntireColumn.Hidden = True
+
+
+' Скрываем ненужные для Режим Ввод Данных из Выпуска Продукции столбцы
+Columns_Group_1kvartal.EntireColumn.Hidden = True   
+Column_need_plan_1kvartal.EntireColumn.Hidden = True          
+Column_initial_warehouse_balance1kv.EntireColumn.Hidden = True
+Column_plan_1kvartal.EntireColumn.Hidden = True               
+Column_need_1kvartal.EntireColumn.Hidden = True            
+Column_buy_1kvartal.EntireColumn.Hidden = True    
+' Column_outgo_1kvartal.EntireColumn.Hidden = True              
+Column_final_warehouse_balance1kv.EntireColumn.Hidden = True  
+Columns_Group_1kvartal.EntireColumn.Hidden = True  
+Range("AD1").EntireColumn.Hidden = True  
+
+
+' Скрываем ненужные для Режим Ввод Данных из Выпуска Продукции столбцы
+Columns_Group_2kvartal.EntireColumn.Hidden = True      
+Column_need_plan_2kvartal.EntireColumn.Hidden = True           
+Column_initial_warehouse_balance2kv.EntireColumn.Hidden = True 
+Column_plan_2kvartal.EntireColumn.Hidden = True                
+Column_need_2kvartal.EntireColumn.Hidden = True
+Column_buy_2kvartal.EntireColumn.Hidden = True                
+' Column_outgo_2kvartal.EntireColumn.Hidden = True               
+Column_final_warehouse_balance2kv.EntireColumn.Hidden = True   
+Columns_Group_2kvartal.EntireColumn.Hidden = True
+Range("AX1").EntireColumn.Hidden = True 
+
+' Скрываем ненужные для Режим Ввод Данных из Выпуска Продукции столбцы
+Columns_Group_3kvartal.EntireColumn.Hidden = True  
+Column_need_plan_3kvartal.EntireColumn.Hidden = True           
+Column_initial_warehouse_balance3kv.EntireColumn.Hidden = True 
+Column_plan_3kvartal.EntireColumn.Hidden = True                
+Column_need_3kvartal.EntireColumn.Hidden = True
+Column_buy_3kvartal.EntireColumn.Hidden = True                
+' Column_outgo_3kvartal.EntireColumn.Hidden = True               
+Column_final_warehouse_balance3kv.EntireColumn.Hidden = True   
+Columns_Group_3kvartal.EntireColumn.Hidden = True
+Range("BR1").EntireColumn.Hidden = True 
+
+' Скрываем ненужные для Режим Ввод Данных из Выпуска Продукции столбцы
+Columns_Group_4kvartal.EntireColumn.Hidden = True 
+Column_need_plan_4kvartal.EntireColumn.Hidden = True           
+Column_initial_warehouse_balance4kv.EntireColumn.Hidden = True 
+Column_plan_4kvartal.EntireColumn.Hidden = True                
+Column_need_4kvartal.EntireColumn.Hidden = True
+Column_buy_4kvartal.EntireColumn.Hidden = True                
+' Column_outgo_4kvartal.EntireColumn.Hidden = True               
+Column_final_warehouse_balance4kv.EntireColumn.Hidden = True   
+Columns_Group_4kvartal.EntireColumn.Hidden = True
+Range("CL1").EntireColumn.Hidden = True 
+
+
+' Скрываем ненужные для Режим Ввод Данных из Выпуска Продукции столбцы
+Columns_Group_next_kvartal.EntireColumn.Hidden = True   
+Column_need_plan_next_kvartal.EntireColumn.Hidden = True            
+Column_initial_warehouse_balance_next_kv.EntireColumn.Hidden = True 
+Column_plan_next_kvartal.EntireColumn.Hidden = True                 
+Column_need_next_kvartal.EntireColumn.Hidden = True
+Column_buy_next_kvartal.EntireColumn.Hidden = True                  
+' Column_outgo_next_kvartal.EntireColumn.Hidden = True               
+Column_final_warehouse_balance_next_kv.EntireColumn.Hidden = True   
+Columns_Group_next_kvartal.EntireColumn.Hidden = True   
+Range("DF1").EntireColumn.Hidden = True             
+
+
+
+' закроем(свернем) все группы
+Worksheets("Детализация").Outline.ShowLevels 1, 1
+Range("A1").Value = MODE_INPUT_DATA
+MsgBox "Работа макроса закончена"
+End Sub
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 '==================================================================================================================================
