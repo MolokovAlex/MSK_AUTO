@@ -370,9 +370,12 @@ Rows("147").Hidden = True
 Rows("149").Hidden = True
 Rows("155").Hidden = True
 Rows("157:158").Hidden = True
-
-
-
+Rows("164:166").Hidden = True
+Rows("181:184").Hidden = True
+Rows("189:190").Hidden = True
+Rows("192").Hidden = True
+Rows("196").Hidden = True
+Rows("198:200").Hidden = True
 
 ' закроем(свернем) все группы
 Worksheets("Детализация").Outline.ShowLevels 1, 1
