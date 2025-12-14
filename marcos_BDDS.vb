@@ -3,10 +3,10 @@
 
 ' ---------------------- столбцы группы Спецификация --------------------------------------
 Public Const Offset_Colunms_Group_specf             As Integer = 2 'столбцы группа Спецификации
-Public Const Size_Offset_Colunms_Group_specf        As Integer = 3 'длина группы 
+Public Const Size_Colunms_Group_specf        As Integer = 3 'длина группы 
 ' ---------------------- столбцы группы Производителя --------------------------------------
 Public Const Offset_Colunms_Group_producer          As Integer = 5 'столбцы группа Производитель
-Public Const Size_Offset_Colunms_Group_producer     As Integer = 4 'длина группы 
+Public Const Size_Colunms_Group_producer     As Integer = 4 'длина группы 
 ' ---------------------- столбцы группы ГШВА --------------------------------------
 Public Const Offset_Rows_GSHVA_Summ                 As Integer = 5 'строки группа ГШВА 
 Public Const Size_Rows_GSHVA_Summ                   As Integer = 18 'длина группы 
@@ -780,7 +780,38 @@ End Sub
 
 
 
+'==================================================================================================================================
+'============================================================    Режим Заполнения данными из файла Выпуска продукции   ========================================
+'==================================================================================================================================
+'Макрос заполенния данными из файла "Выпуска продукции"
+'in:
+' текущий лист книги
+'==================================================================================================================================
+Sub MSK_INPUT_DATA_FROM_VP()
 
+Dim wbPR As Workbook
+' ' Set wbPP = Workbooks.Open("План реализации 2025 230725.xlsx")
+' set WBfrom = wbPR.Sheets("План реализации 2025 230725.xlsx")
+' Dim wbPP As Workbook
+' ' Set wbPP = Workbooks.Open("План реализации 2025 230725.xlsx")
+' set WBto = wbPP.Sheets("План платежей ПрО_2025_25.12.05.xlsm")
+
+' Dim wksFr       As String
+' Dim wksTo       As String
+' wksFr = "План реализации 2025 230725.xlsx"
+' wksTo = "План платежей ПрО_2025_25.12.05.xlsm"
+' Set wks_To = Workbooks("План платежей ПрО_2025_25.12.05.xlsm").Open
+Set wks_To = Workbooks("План платежей ПрО_2025_25.12.05.xlsm").Worksheets("Детализация")
+
+Set wbPR = Workbooks.Open("План реализации 2025 230725.xlsx")
+
+
+
+wks_To.Cells(5, 13).Value = wbPR.Worksheets("2025 г.").Cells(3, 4).Value
+
+wks_From.Close True
+wks_To.Close True
+End Sub
 
 
 
