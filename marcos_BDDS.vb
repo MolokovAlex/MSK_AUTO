@@ -1,15 +1,67 @@
+'==================================================================================================================================
+'================================================= Module =============================================================
+
+' ---------------------- столбцы группы Спецификация --------------------------------------
+Public Const Offset_Colunms_Group_specf             As Integer = 2 'столбцы группа Спецификации
+Public Const Size_Offset_Colunms_Group_specf        As Integer = 3 'длина группы 
+' ---------------------- столбцы группы Производителя --------------------------------------
+Public Const Offset_Colunms_Group_producer          As Integer = 5 'столбцы группа Производитель
+Public Const Size_Offset_Colunms_Group_producer     As Integer = 4 'длина группы 
+' ---------------------- столбцы группы ГШВА --------------------------------------
+Public Const Offset_Rows_GSHVA_Summ                 As Integer = 5 'строки группа ГШВА 
+Public Const Size_Rows_GSHVA_Summ                   As Integer = 18 'длина группы 
+' ---------------------- 1 квартал ---------------------------------------
+Public Const Offset_Column_need_plan_1kvartal              As Integer = 10    ' потребность-план 1 квартала 2025г                   
+Public Const Column_initial_warehouse_balance1kv    As Integer = 11    ' столбец начальный складской остаток на 1 квартал 2025г
+Public Const Column_plan_1kvartal                   As Integer = 12    ' столбец план реализации 1 квартала 2025г
+Public Const Column_need_1kvartal                   As Integer = 13    ' потребность 1 квартала 2025г              
+Public Const Column_buy_1kvartal                    As Integer = 14    ' в закупку 1 квартал 2025г
+Public Const Column_outgo_1kvartal                  As Integer = 15    ' расход 1 квартал 2025г
+Public Const Offset_Column_final_warehouse_balance1kv      As Integer = 16    ' конечный складской остаток 1 квартал 2025г
+Public Const Offset_Columns_Group_1kvartal     As Integer = 17    ' начало группы стобцов месяцев 1 кв.2025 + группа Аванс/Ок.расчет/Примечание для 1 квартала 2025г
+Public Const Size_Columns_Group_1kvartal     As Integer = 13    ' длина групп Columns_Group_1kvartal
+
+
+
+'==================================================================================================================================
 ' Функция скрывает столбец или группу столбцов
 ' In:
 ' Start_num_column - начальный номер группы столбцов
 ' Size_column - количество столбцов для скрытия
-Private Function Entire_Column(ByVal Start_num_column As Integer, ByVal Size_column As Integer) As Boolean 
+Public Function Entire_Column(ByVal Start_num_column As Integer, ByVal Size_column As Integer) As Boolean 
     Dim I As Integer
     For I = Start_num_column To Start_num_column+Size_column-1
         Range("A1").Offset(rowOffset:=0, columnOffset:=I).EntireColumn.Hidden = True 
     Next I
     Entire_Column = True
 End Function
+'==================================================================================================================================
+'==================================================================================================================================
+' Функция скрывает строку  или группу строк
+' In:
+' Start_num_row - начальный номер группы стстрок
+' Size_row - количество строк для скрытия
+Public Function Entire_Row(ByVal Start_num_row As Integer, ByVal Size_row As Integer) As Boolean 
+    Dim I As Integer
+    For I = Start_num_row To Start_num_row+Size_row-1
+        Range("A1").Offset(rowOffset:=I, columnOffset:=0).EntireRow.Hidden = True 
+    Next I
+    Entire_Row = True
+End Function
 
+
+
+
+'==================================================================================================================================
+'================================================ End Module =============================================================
+'==================================================================================================================================
+
+
+
+
+
+
+'==================================================================================================================================
 Private Sub ExpandAll()
 'UpdatebyExtendoffice20181031
     Dim I As Integer
@@ -31,6 +83,7 @@ Private Sub ExpandAll()
         End If
     Next J
 End Sub
+'==================================================================================================================================
 
 Private Function UngroupAll()
     Dim J As Integer
@@ -47,21 +100,25 @@ Private Function UngroupAll()
     Range("1:700").Ungroup
 End Function
 
+'==================================================================================================================================
 
 Private Function InitTable()
-    Dim J As Integer
-   
-    On Error Resume Next
-    For J = 1 To 6
-        Range("A1:DM1").Ungroup
-        If Err.Number <> 0 Then
-            Err.Clear
-            Exit For
-        End If
-    Next J
+' разворачивание всех группированных столбцов
+' Worksheets("Детализация").Outline.ShowLevels 6, 6
+' ActiveSheet.Cells.ClearOutline
+ExpandAll
 
-    Range("1:700").Ungroup
+' Покажем все скрытые строки и столбцы
+Range("A1:DM1").EntireColumn.Hidden = False
+Range("1:700").EntireRow.Hidden = False 
+
+' отменим группировку всех столбцов
+' Range("A1:DM1").Ungroup
+' Range("A1:DM1").Ungroup
+UngroupAll
+
 End Function
+'==================================================================================================================================
 
 
 
@@ -115,24 +172,15 @@ If password <> good_password Then
     Exit Sub
 End If
 
-' разворачивание всех группированных столбцов
-' Worksheets("Детализация").Outline.ShowLevels 6, 6
-' ActiveSheet.Cells.ClearOutline
-ExpandAll
 
-' Покажем все скрытые строки и столбцы
-Range("A1:DM1").EntireColumn.Hidden = False
-Range("1:700").EntireRow.Hidden = False 
 
-' отменим группировку всех столбцов
-' Range("A1:DM1").Ungroup
-' Range("A1:DM1").Ungroup
-UngroupAll
+InitTable
+
 
 ' ---------------------- столбцы группы Спецификация --------------------------------------
-set Colunms_Group_specf                 = Range("C1:D1") 'столбцы группа Спецификации
+' set Colunms_Group_specf                 = Range("C1:D1") 'столбцы группа Спецификации
 ' ---------------------- столбцы группы Производителя --------------------------------------
-set Colunms_Group_producer              = Range("F1:H1") 'столбцы группа Производитель
+' set Colunms_Group_producer              = Range("F1:H1") 'столбцы группа Производитель
 ' группируем группы Спецификации и Производитель
 ' Colunms_Group_specf.Group
 ' Colunms_Group_producer.Group
@@ -487,10 +535,10 @@ End If
 ' Назначение столбцов
 ' TODO -  вывести эти диапазоны как константы и сделать функции скрытия столбцов, пердавая туда константы как архив
 ' и тогда не надо в каждой функции дублировать эти  SET-ы
-' ---------------------- столбцы группы Спецификация --------------------------------------
-set Colunms_Group_specf                 = Range("C1:D1") 'столбцы группа Спецификации
-' ---------------------- столбцы группы Производителя --------------------------------------
-set Colunms_Group_producer              = Range("F1:H1") 'столбцы группа Производитель
+' ' ---------------------- столбцы группы Спецификация --------------------------------------
+' set Colunms_Group_specf                 = Range("C1:D1") 'столбцы группа Спецификации
+' ' ---------------------- столбцы группы Производителя --------------------------------------
+' set Colunms_Group_producer              = Range("F1:H1") 'столбцы группа Производитель
 
 ' ---------------------- все кварталы ---------------------------------------
 
@@ -566,74 +614,71 @@ set Columns_Group_next_kvartal              = Range("CT1:DE1") 'столбцы �
 
 ' -----------------------------------
 ' -----------------------------------
-' ----------------------------------- Назначение строк ---------------------------------------------------------------
-set Rows_GSHVA                              = Range("6:23") ' все строки от ГШВА
-set Rows_BP14_5                             = Range("25:37") ' все строки от БП14-5
-set Rows_TAIS                               = Range("39:46") ' все строки от ТАИС
-set Rows_ACMicro                            = Range("51:52") ' все строки от АСМикро
-set Rows_OMS2000                            = Range("54:54") ' все строки от OMS-2000
-set Rows_OMS2000M                           = Range("56:63") ' все строки от OMS-2000M
-set Rows_US6                                = Range("65:68") ' все строки от УС6
+' ' ----------------------------------- Назначение строк ---------------------------------------------------------------
+' set Rows_GSHVA                              = Range("6:23") ' все строки от ГШВА
+' set Rows_BP14_5                             = Range("25:37") ' все строки от БП14-5
+' set Rows_TAIS                               = Range("39:46") ' все строки от ТАИС
+' set Rows_ACMicro                            = Range("51:52") ' все строки от АСМикро
+' set Rows_OMS2000                            = Range("54:54") ' все строки от OMS-2000
+' set Rows_OMS2000M                           = Range("56:63") ' все строки от OMS-2000M
+' set Rows_US6                                = Range("65:68") ' все строки от УС6
 
 
+' подготовим таблицу для дальнейших модификаций - покажем все скрытые строки/столбцы, откроем и разгруппируем группы
+InitTable
 
-' разворачивание всех группированных столбцов
-' ActiveSheet.Outline.ShowLevels ColumnLevels:=1
-' Worksheets("Детализация").Outline.ShowLevels 6, 6
-ExpandAll
+' ' разворачивание всех группированных столбцов
+' ' ActiveSheet.Outline.ShowLevels ColumnLevels:=1
+' ' Worksheets("Детализация").Outline.ShowLevels 6, 6
+' ExpandAll
 
-Range("A1:DM1").EntireColumn.Hidden = False
+' Range("A1:DM1").EntireColumn.Hidden = False
 
-' отменим группировку всех столбцов
-' Range("A1:DM1").Ungroup
-' Range("A1:DM1").Ungroup
-UngroupAll
+' ' отменим группировку всех столбцов
+' ' Range("A1:DM1").Ungroup
+' ' Range("A1:DM1").Ungroup
+' UngroupAll
 
 
 ' группируем группы Спецификации и Производитель
-Colunms_Group_specf.Group
-Colunms_Group_producer.Group
+' Colunms_Group_specf.Group
+' Colunms_Group_producer.Group
 
 ' Скроем "Всего Потребности в год"
 Range("J1").EntireColumn.Hidden = True
 ' Скроем крайнюю правую таблицу "2026"
 Range("DG1:DM1").EntireColumn.Hidden = True
 
-Dim Offset_strt_Columns_Group_1kvartal      As Integer
-Dim Offset_dlit_Columns_Group_1kvartal      As Integer
-Dim Column_need_plan_1kvartal               As Integer                   
-Dim Column_initial_warehouse_balance1kv     As Integer
-Dim Column_plan_1kvartal                    As Integer
-Dim Column_need_1kvartal                    As Integer               
-Dim Column_buy_1kvartal                     As Integer
-Dim Column_outgo_1kvartal                   As Integer
-Dim Column_final_warehouse_balance1kv       As Integer
 
-Dim rez As Boolean
-set Base_first_cell                         = Range("A1")
 
-' ---------------------- 1 квартал ---------------------------------------
-Offset_Column_need_plan_1kvartal           = 10    ' потребность-план 1 квартала 2025г
-Offset_Column_initial_warehouse_balance1kv = 11    ' столбец начальный складской остаток на 1 квартал 2025г
-Offset_Column_plan_1kvartal                = 12    ' столбец план реализации 1 квартала 2025г
-Offset_Column_need_1kvartal                = 13    ' потребность 1 квартала 2025г
-Offset_Column_buy_1kvartal                 = 14    ' в закупку 1 квартал 2025г
-Offset_Column_outgo_1kvartal               = 15    ' расход 1 квартал 2025г
-Offset_Column_final_warehouse_balance1kv   = 16    ' конечный складской остаток 1 квартал 2025г
-Offset_strt_Columns_Group_1kvartal         = 17     ' начало группы стобцов месяцев 1 кв.2025 + группа Аванс/Ок.расчет/Примечание для 1 квартала 2025г
-Offset_size_Columns_Group_1kvartal         = 13     '  длина групп Columns_Group_1kvartal
 ' Columns_jan_1kvartal                = Range("R1:T1") 'группа столбцов январь
 ' Columns_feb_1kvartal                = Range("V1:X1") 'группа столбцов февраль
 ' Columns_march_1kvartal              = Range("Z1:AB1") 'группа столбцов март
 ' Columns_Group_1kvartal              = Range("R1:AC1") 'столбцы группа Аванс/Ок.расчет/Примечание для 1 квартала 2025г
 
 
+
+
+
+Dim rez As Boolean
+set Base_first_cell                         = Range("A1")
+
+
+
+
+
+' скроем группы Спецификации и Производитель
+Base_first_cell.Select
+rez = Entire_Column (Offset_Colunms_Group_specf, Size_Colunms_Group_specf)
+Base_first_cell.Select
+rez = Entire_Column (Offset_Colunms_Group_producer, Size_Colunms_Group_producer)
+' скроем все, что не нужно в 1 квартале
 Base_first_cell.Select
 rez = Entire_Column (Offset_Column_need_plan_1kvartal, 5)
 Base_first_cell.Select
 rez = Entire_Column (Offset_Column_final_warehouse_balance1kv, 1)
 Base_first_cell.Select
-rez = Entire_Column (Offset_strt_Columns_Group_1kvartal, Offset_size_Columns_Group_1kvartal)
+rez = Entire_Column (Offset_Columns_Group_1kvartal, Size_Columns_Group_1kvartal)
 
 ' Скрываем ненужные для Режим Ввод Данных из Выпуска Продукции столбцы
 ' Columns_Group_1kvartal.EntireColumn.Hidden = True   
@@ -698,7 +743,21 @@ Columns_Group_next_kvartal.EntireColumn.Hidden = True
 Range("DF1").EntireColumn.Hidden = True             
 
 
-Rows_GSHVA.EntireRow.Hidden = True  
+' ----------------------------------- Назначение строк ---------------------------------------------------------------
+' set Rows_GSHVA                              = Range("6:23") ' все строки от ГШВА
+set Rows_BP14_5                             = Range("25:37") ' все строки от БП14-5
+set Rows_TAIS                               = Range("39:46") ' все строки от ТАИС
+set Rows_ACMicro                            = Range("51:52") ' все строки от АСМикро
+set Rows_OMS2000                            = Range("54:54") ' все строки от OMS-2000
+set Rows_OMS2000M                           = Range("56:63") ' все строки от OMS-2000M
+set Rows_US6                                = Range("65:68") ' все строки от УС6
+
+
+' скроем строки группы ГШВА
+Base_first_cell.Select
+rez = Entire_Row(Offset_Rows_GSHVA_Summ, Size_Rows_GSHVA_Summ)
+
+' Rows_GSHVA.EntireRow.Hidden = True  
 Rows_BP14_5.EntireRow.Hidden = True   
 Rows_TAIS.EntireRow.Hidden = True    
 Rows_ACMicro.EntireRow.Hidden = True  
