@@ -2,24 +2,24 @@
 '================================================= Module =============================================================
 
 ' ---------------------- столбцы группы Спецификация --------------------------------------
-Public Const Offset_Colunms_Group_specf             As Integer = 2 'столбцы группа Спецификации
-Public Const Size_Colunms_Group_specf        As Integer = 3 'длина группы 
+Public Const Offset_Colunms_Group_specf                     As Integer = 2 'столбцы группа Спецификации
+Public Const Size_Colunms_Group_specf                       As Integer = 3 'длина группы 
 ' ---------------------- столбцы группы Производителя --------------------------------------
-Public Const Offset_Colunms_Group_producer          As Integer = 5 'столбцы группа Производитель
-Public Const Size_Colunms_Group_producer     As Integer = 4 'длина группы 
+Public Const Offset_Colunms_Group_producer                  As Integer = 5 'столбцы группа Производитель
+Public Const Size_Colunms_Group_producer                    As Integer = 4 'длина группы 
 ' ---------------------- столбцы группы ГШВА --------------------------------------
-Public Const Offset_Rows_GSHVA_Summ                 As Integer = 5 'строки группа ГШВА 
-Public Const Size_Rows_GSHVA_Summ                   As Integer = 18 'длина группы 
+Public Const Offset_Rows_GSHVA_Summ                         As Integer = 5 'строки группа ГШВА 
+Public Const Size_Rows_GSHVA_Summ                           As Integer = 18 'длина группы 
 ' ---------------------- 1 квартал ---------------------------------------
-Public Const Offset_Column_need_plan_1kvartal              As Integer = 10    ' потребность-план 1 квартала 2025г                   
-Public Const Column_initial_warehouse_balance1kv    As Integer = 11    ' столбец начальный складской остаток на 1 квартал 2025г
-Public Const Column_plan_1kvartal                   As Integer = 12    ' столбец план реализации 1 квартала 2025г
-Public Const Column_need_1kvartal                   As Integer = 13    ' потребность 1 квартала 2025г              
-Public Const Column_buy_1kvartal                    As Integer = 14    ' в закупку 1 квартал 2025г
-Public Const Column_outgo_1kvartal                  As Integer = 15    ' расход 1 квартал 2025г
-Public Const Offset_Column_final_warehouse_balance1kv      As Integer = 16    ' конечный складской остаток 1 квартал 2025г
-Public Const Offset_Columns_Group_1kvartal     As Integer = 17    ' начало группы стобцов месяцев 1 кв.2025 + группа Аванс/Ок.расчет/Примечание для 1 квартала 2025г
-Public Const Size_Columns_Group_1kvartal     As Integer = 13    ' длина групп Columns_Group_1kvartal
+Public Const Offset_Column_need_plan_1kvartal               As Integer = 10    ' потребность-план 1 квартала 2025г                   
+Public Const Column_initial_warehouse_balance1kv            As Integer = 11    ' столбец начальный складской остаток на 1 квартал 2025г
+Public Const Column_plan_1kvartal                           As Integer = 12    ' столбец план реализации 1 квартала 2025г
+Public Const Column_need_1kvartal                           As Integer = 13    ' потребность 1 квартала 2025г              
+Public Const Column_buy_1kvartal                            As Integer = 14    ' в закупку 1 квартал 2025г
+Public Const Column_outgo_1kvartal                          As Integer = 15    ' расход 1 квартал 2025г
+Public Const Offset_Column_final_warehouse_balance1kv       As Integer = 16    ' конечный складской остаток 1 квартал 2025г
+Public Const Offset_Columns_Group_1kvartal                  As Integer = 17    ' начало группы стобцов месяцев 1 кв.2025 + группа Аванс/Ок.расчет/Примечание для 1 квартала 2025г
+Public Const Size_Columns_Group_1kvartal                    As Integer = 13    ' длина групп Columns_Group_1kvartal
 
 
 
@@ -790,27 +790,164 @@ End Sub
 Sub MSK_INPUT_DATA_FROM_VP()
 
 Dim wbPR As Workbook
-' ' Set wbPP = Workbooks.Open("План реализации 2025 230725.xlsx")
-' set WBfrom = wbPR.Sheets("План реализации 2025 230725.xlsx")
 ' Dim wbPP As Workbook
-' ' Set wbPP = Workbooks.Open("План реализации 2025 230725.xlsx")
-' set WBto = wbPP.Sheets("План платежей ПрО_2025_25.12.05.xlsm")
 
-' Dim wksFr       As String
-' Dim wksTo       As String
-' wksFr = "План реализации 2025 230725.xlsx"
-' wksTo = "План платежей ПрО_2025_25.12.05.xlsm"
-' Set wks_To = Workbooks("План платежей ПрО_2025_25.12.05.xlsm").Open
-Set wks_To = Workbooks("План платежей ПрО_2025_25.12.05.xlsm").Worksheets("Детализация")
+Set wbPR = Workbooks.Open("План_реализации_2025_230725.xlsx", , True)
+' Set wbPP = Workbooks("План платежей ПрО_2025_25.12.05.xlsm")
 
-Set wbPR = Workbooks.Open("План реализации 2025 230725.xlsx")
+' -------------------------------------- ГШВА ----------------------------------------------
+Set PR_GSHVA_1kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=2, columnOffset:=3)
+Set PR_GSHVA_2kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=2, columnOffset:=10)
+Set PR_GSHVA_3kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=2, columnOffset:=17)
+Set PR_GSHVA_4kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=2, columnOffset:=24)
+Set PP_GSHVA_1kv = Range("A1").Offset(rowOffset:=4, columnOffset:=12)
+Set PP_GSHVA_2kv = Range("A1").Offset(rowOffset:=4, columnOffset:=32)
+Set PP_GSHVA_3kv = Range("A1").Offset(rowOffset:=4, columnOffset:=52)
+Set PP_GSHVA_4kv = Range("A1").Offset(rowOffset:=4, columnOffset:=72)
+PP_GSHVA_1kv.Value = PR_GSHVA_1kv.Value
+PP_GSHVA_2kv.Value = PR_GSHVA_2kv.Value
+PP_GSHVA_3kv.Value = PR_GSHVA_3kv.Value
+PP_GSHVA_4kv.Value = PR_GSHVA_4kv.Value
+' -------------------------------------- БП14-5 ----------------------------------------------
+Set PR_BP14_1kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=7, columnOffset:=3)
+Set PR_BP14_2kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=7, columnOffset:=10)
+Set PR_BP14_3kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=7, columnOffset:=17)
+Set PR_BP14_4kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=7, columnOffset:=24)
+Set PP_BP14_1kv = Range("A1").Offset(rowOffset:=23, columnOffset:=12)
+Set PP_BP14_2kv = Range("A1").Offset(rowOffset:=23, columnOffset:=32)
+Set PP_BP14_3kv = Range("A1").Offset(rowOffset:=23, columnOffset:=52)
+Set PP_BP14_4kv = Range("A1").Offset(rowOffset:=23, columnOffset:=72)
+PP_BP14_1kv.Value = PR_BP14_1kv.Value
+PP_BP14_2kv.Value = PR_BP14_2kv.Value
+PP_BP14_3kv.Value = PR_BP14_3kv.Value
+PP_BP14_4kv.Value = PR_BP14_4kv.Value
+' -------------------------------------- ПЭД-5 ----------------------------------------------
+Set PR_PED5_1kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=12, columnOffset:=3)
+Set PR_PED5_2kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=12, columnOffset:=10)
+Set PR_PED5_3kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=12, columnOffset:=17)
+Set PR_PED5_4kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=12, columnOffset:=24)
+Set PP_PED5_1kv = Range("A1").Offset(rowOffset:=47, columnOffset:=12)
+Set PP_PED5_2kv = Range("A1").Offset(rowOffset:=47, columnOffset:=32)
+Set PP_PED5_3kv = Range("A1").Offset(rowOffset:=47, columnOffset:=52)
+Set PP_PED5_4kv = Range("A1").Offset(rowOffset:=47, columnOffset:=72)
+PP_PED5_1kv.Value = PR_PED5_1kv.Value
+PP_PED5_2kv.Value = PR_PED5_2kv.Value
+PP_PED5_3kv.Value = PR_PED5_3kv.Value
+PP_PED5_4kv.Value = PR_PED5_4kv.Value
+' -------------------------------------- ПЭД-6 ----------------------------------------------
+Set PR_PED6_1kv = wbPR.Sheets("2025 г.").Range("D18")'.Offset(rowOffset:=17, columnOffset:=3)
+Set PR_PED6_2kv = wbPR.Sheets("2025 г.").Range("K18")'.Offset(rowOffset:=17, columnOffset:=10)
+Set PR_PED6_3kv = wbPR.Sheets("2025 г.").Range("R18")'.Offset(rowOffset:=17, columnOffset:=17)
+Set PR_PED6_4kv = wbPR.Sheets("2025 г.").Range("Y18")'.Offset(rowOffset:=17, columnOffset:=24)
+Set PP_PED6_1kv = Range("A1").Offset(rowOffset:=48, columnOffset:=12)
+Set PP_PED6_2kv = Range("A1").Offset(rowOffset:=48, columnOffset:=32)
+Set PP_PED6_3kv = Range("A1").Offset(rowOffset:=48, columnOffset:=52)
+Set PP_PED6_4kv = Range("A1").Offset(rowOffset:=48, columnOffset:=72)
+PP_PED6_1kv.Value = PR_PED6_1kv.Value
+PP_PED6_2kv.Value = PR_PED6_2kv.Value
+PP_PED6_3kv.Value = PR_PED6_3kv.Value
+PP_PED6_4kv.Value = PR_PED6_4kv.Value
+' -------------------------------------- OMS-2000 ----------------------------------------------
+Set PR_OMS_1kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=22, columnOffset:=3)
+Set PR_OMS_2kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=22, columnOffset:=10)
+Set PR_OMS_3kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=22, columnOffset:=17)
+Set PR_OMS_4kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=22, columnOffset:=24)
+Set PP_OMS_1kv = Range("A1").Offset(rowOffset:=52, columnOffset:=12)
+Set PP_OMS_2kv = Range("A1").Offset(rowOffset:=52, columnOffset:=32)
+Set PP_OMS_3kv = Range("A1").Offset(rowOffset:=52, columnOffset:=52)
+Set PP_OMS_4kv = Range("A1").Offset(rowOffset:=52, columnOffset:=72)
+PP_OMS_1kv.Value = PR_OMS_1kv.Value
+PP_OMS_2kv.Value = PR_OMS_2kv.Value
+PP_OMS_3kv.Value = PR_OMS_3kv.Value
+PP_OMS_4kv.Value = PR_OMS_4kv.Value
+' -------------------------------------- OMS-2000M ----------------------------------------------
+Set PR_OMSM_1kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=27, columnOffset:=3)
+Set PR_OMSM_2kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=27, columnOffset:=10)
+Set PR_OMSM_3kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=27, columnOffset:=17)
+Set PR_OMSM_4kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=27, columnOffset:=24)
+Set PP_OMSM_1kv = Range("A1").Offset(rowOffset:=54, columnOffset:=12)
+Set PP_OMSM_2kv = Range("A1").Offset(rowOffset:=54, columnOffset:=32)
+Set PP_OMSM_3kv = Range("A1").Offset(rowOffset:=54, columnOffset:=52)
+Set PP_OMSM_4kv = Range("A1").Offset(rowOffset:=54, columnOffset:=72)
+PP_OMSM_1kv.Value = PR_OMSM_1kv.Value
+PP_OMSM_2kv.Value = PR_OMSM_2kv.Value
+PP_OMSM_3kv.Value = PR_OMSM_3kv.Value
+PP_OMSM_4kv.Value = PR_OMSM_4kv.Value
+' -------------------------------------- Ш3 Монтажная площадка -------------------------------------------
+Set PR_MP_SH3_1kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=32, columnOffset:=3)
+Set PR_MP_SH3_2kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=32, columnOffset:=10)
+Set PR_MP_SH3_3kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=32, columnOffset:=17)
+Set PR_MP_SH3_4kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=32, columnOffset:=24)
+Set PP_MP_SH3_1kv = Range("A1").Offset(rowOffset:=70, columnOffset:=12)
+Set PP_MP_SH3_2kv = Range("A1").Offset(rowOffset:=70, columnOffset:=32)
+Set PP_MP_SH3_3kv = Range("A1").Offset(rowOffset:=70, columnOffset:=52)
+Set PP_MP_SH3_4kv = Range("A1").Offset(rowOffset:=70, columnOffset:=72)
+PP_MP_SH3_1kv.Value = PR_MP_SH3_1kv.Value
+PP_MP_SH3_2kv.Value = PR_MP_SH3_2kv.Value
+PP_MP_SH3_3kv.Value = PR_MP_SH3_3kv.Value
+PP_MP_SH3_4kv.Value = PR_MP_SH3_4kv.Value
+' -------------------------------------- Ш3 Дюбель Алюм ----------------------------------------------
+Set PR_D_AL_SH3_1kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=37, columnOffset:=3)
+Set PR_D_AL_SH3_2kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=37, columnOffset:=10)
+Set PR_D_AL_SH3_3kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=37, columnOffset:=17)
+Set PR_D_AL_SH3_4kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=37, columnOffset:=24)
+Set PP_D_AL_SH3_1kv = Range("A1").Offset(rowOffset:=71, columnOffset:=12)
+Set PP_D_AL_SH3_2kv = Range("A1").Offset(rowOffset:=71, columnOffset:=32)
+Set PP_D_AL_SH3_3kv = Range("A1").Offset(rowOffset:=71, columnOffset:=52)
+Set PP_D_AL_SH3_4kv = Range("A1").Offset(rowOffset:=71, columnOffset:=72)
+PP_D_AL_SH3_1kv.Value = PR_D_AL_SH3_1kv.Value
+PP_D_AL_SH3_2kv.Value = PR_D_AL_SH3_2kv.Value
+PP_D_AL_SH3_3kv.Value = PR_D_AL_SH3_3kv.Value
+PP_D_AL_SH3_4kv.Value = PR_D_AL_SH3_4kv.Value
+' -------------------------------------- Ш3 Дюбель Стальн ----------------------------------------------
+Set PR_D_ST_SH3_1kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=42, columnOffset:=3)
+Set PR_D_ST_SH3_2kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=42, columnOffset:=10)
+Set PR_D_ST_SH3_3kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=42, columnOffset:=17)
+Set PR_D_ST_SH3_4kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=42, columnOffset:=24)
+Set PP_D_ST_SH3_1kv = Range("A1").Offset(rowOffset:=72, columnOffset:=12)
+Set PP_D_ST_SH3_2kv = Range("A1").Offset(rowOffset:=72, columnOffset:=32)
+Set PP_D_ST_SH3_3kv = Range("A1").Offset(rowOffset:=72, columnOffset:=52)
+Set PP_D_ST_SH3_4kv = Range("A1").Offset(rowOffset:=72, columnOffset:=72)
+PP_D_ST_SH3_1kv.Value = PR_D_ST_SH3_1kv.Value
+PP_D_ST_SH3_2kv.Value = PR_D_ST_SH3_2kv.Value
+PP_D_ST_SH3_3kv.Value = PR_D_ST_SH3_3kv.Value
+PP_D_ST_SH3_4kv.Value = PR_D_ST_SH3_4kv.Value
+' -------------------------------------- Ш3 Хомут на трубы ----------------------------------------------
+Set PR_XOM_SH3_1kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=47, columnOffset:=3)
+Set PR_XOM_SH3_2kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=47, columnOffset:=10)
+Set PR_XOM_SH3_3kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=47, columnOffset:=17)
+Set PR_XOM_SH3_4kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=47, columnOffset:=24)
+Set PP_XOM_SH3_1kv = Range("A1").Offset(rowOffset:=69, columnOffset:=12)
+Set PP_XOM_SH3_2kv = Range("A1").Offset(rowOffset:=69, columnOffset:=32)
+Set PP_XOM_SH3_3kv = Range("A1").Offset(rowOffset:=69, columnOffset:=52)
+Set PP_XOM_SH3_4kv = Range("A1").Offset(rowOffset:=69, columnOffset:=72)
+PP_XOM_SH3_1kv.Value = PR_XOM_SH3_1kv.Value
+PP_XOM_SH3_2kv.Value = PR_XOM_SH3_2kv.Value
+PP_XOM_SH3_3kv.Value = PR_XOM_SH3_3kv.Value
+PP_XOM_SH3_4kv.Value = PR_XOM_SH3_4kv.Value
+' -------------------------------------- БПУ ----------------------------------------------
+' -------------------------------------- ПЭД-8 ----------------------------------------------
+' -------------------------------------- АИ-8А/мини ----------------------------------------------
+' -------------------------------------- АИ-8А/П ----------------------------------------------
+' -------------------------------------- АИ-8А/У ----------------------------------------------
+' -------------------------------------- АИ-8А/Н ----------------------------------------------
+' -------------------------------------- Монтажная площадка тип1 ----------------------------------------------
+' -------------------------------------- Монтажная площадка тип1 ----------------------------------------------
+' -------------------------------------- Монтажная площадка тип1 ----------------------------------------------
+' -------------------------------------- Ш5 Хомут на трубы ----------------------------------------------
+' -------------------------------------- Ш5 Дюбель Алюм ----------------------------------------------
+' -------------------------------------- Ш5 Дюбель Стальн ----------------------------------------------
+' -------------------------------------- УВИ ----------------------------------------------
+' -------------------------------------- Пульт ДУ ----------------------------------------------
+' -------------------------------------- Ключ-ВП (IT) ----------------------------------------------
+' -------------------------------------- Ключ-ВП (СЛ) ----------------------------------------------
+' -------------------------------------- Ключ-ВП (220) ----------------------------------------------
 
 
 
-wks_To.Cells(5, 13).Value = wbPR.Worksheets("2025 г.").Cells(3, 4).Value
 
-wks_From.Close True
-wks_To.Close True
+wbPR.Close True
+MsgBox "Работа макроса закончена"
 End Sub
 
 
