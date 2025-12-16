@@ -926,23 +926,227 @@ PP_XOM_SH3_2kv.Value = PR_XOM_SH3_2kv.Value
 PP_XOM_SH3_3kv.Value = PR_XOM_SH3_3kv.Value
 PP_XOM_SH3_4kv.Value = PR_XOM_SH3_4kv.Value
 ' -------------------------------------- БПУ ----------------------------------------------
+Set PR_BPU_SH5_1kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=53, columnOffset:=3)
+Set PR_BPU_SH5_2kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=53, columnOffset:=10)
+Set PR_BPU_SH5_3kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=53, columnOffset:=17)
+Set PR_BPU_SH5_4kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=53, columnOffset:=24)
+Set PP_BPU_SH5_1kv = Range("A1").Offset(rowOffset:=69, columnOffset:=12)
+Set PP_BPU_SH5_2kv = Range("A1").Offset(rowOffset:=69, columnOffset:=32)
+Set PP_BPU_SH5_3kv = Range("A1").Offset(rowOffset:=69, columnOffset:=52)
+Set PP_BPU_SH5_4kv = Range("A1").Offset(rowOffset:=69, columnOffset:=72)
+PP_BPU_SH5_1kv.Value = PR_BPU_SH5_1kv.Value
+PP_BPU_SH5_2kv.Value = PR_BPU_SH5_2kv.Value
+PP_BPU_SH5_3kv.Value = PR_BPU_SH5_3kv.Value
+PP_BPU_SH5_4kv.Value = PR_BPU_SH5_4kv.Value
 ' -------------------------------------- ПЭД-8 ----------------------------------------------
+Set PR_PED8_SH5_1kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=58, columnOffset:=3)
+Set PR_PED8_SH5_2kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=58, columnOffset:=10)
+Set PR_PED8_SH5_3kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=58, columnOffset:=17)
+Set PR_PED8_SH5_4kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=58, columnOffset:=24)
+Set PP_PED8_SH5_1kv = Range("A1").Offset(rowOffset:=69, columnOffset:=12)
+Set PP_PED8_SH5_2kv = Range("A1").Offset(rowOffset:=69, columnOffset:=32)
+Set PP_PED8_SH5_3kv = Range("A1").Offset(rowOffset:=69, columnOffset:=52)
+Set PP_PED8_SH5_4kv = Range("A1").Offset(rowOffset:=69, columnOffset:=72)
+PP_PED8_SH5_1kv.Value = PR_PED8_SH5_1kv.Value
+PP_PED8_SH5_2kv.Value = PR_PED8_SH5_2kv.Value
+PP_PED8_SH5_3kv.Value = PR_PED8_SH5_3kv.Value
+PP_PED8_SH5_4kv.Value = PR_PED8_SH5_4kv.Value
 ' -------------------------------------- АИ-8А/мини ----------------------------------------------
+Set PR_AImini_SH5_1kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=63, columnOffset:=3)
+Set PR_AImini_SH5_2kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=63, columnOffset:=10)
+Set PR_AImini_SH5_3kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=63, columnOffset:=17)
+Set PR_AImini_SH5_4kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=63, columnOffset:=24)
+Set PP_AImini_SH5_1kv = Range("A1").Offset(rowOffset:=69, columnOffset:=12)
+Set PP_AImini_SH5_2kv = Range("A1").Offset(rowOffset:=69, columnOffset:=32)
+Set PP_AImini_SH5_3kv = Range("A1").Offset(rowOffset:=69, columnOffset:=52)
+Set PP_AImini_SH5_4kv = Range("A1").Offset(rowOffset:=69, columnOffset:=72)
+PP_AImini_SH5_1kv.Value = PR_AImini_SH5_1kv.Value
+PP_AImini_SH5_2kv.Value = PR_AImini_SH5_2kv.Value
+PP_AImini_SH5_3kv.Value = PR_AImini_SH5_3kv.Value
+PP_AImini_SH5_4kv.Value = PR_AImini_SH5_4kv.Value
 ' -------------------------------------- АИ-8А/П ----------------------------------------------
+Set PR_AIP_SH5_1kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=68, columnOffset:=3)
+Set PR_AIP_SH5_2kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=68, columnOffset:=10)
+Set PR_AIP_SH5_3kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=68, columnOffset:=17)
+Set PR_AIP_SH5_4kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=68, columnOffset:=24)
+Set PP_AIP_SH5_1kv = Range("A1").Offset(rowOffset:=69, columnOffset:=12)
+Set PP_AIP_SH5_2kv = Range("A1").Offset(rowOffset:=69, columnOffset:=32)
+Set PP_AIP_SH5_3kv = Range("A1").Offset(rowOffset:=69, columnOffset:=52)
+Set PP_AIP_SH5_4kv = Range("A1").Offset(rowOffset:=69, columnOffset:=72)
+PP_AIP_SH5_1kv.Value = PR_AIP_SH5_1kv.Value
+PP_AIP_SH5_2kv.Value = PR_AIP_SH5_2kv.Value
+PP_AIP_SH5_3kv.Value = PR_AIP_SH5_3kv.Value
+PP_AIP_SH5_4kv.Value = PR_AIP_SH5_4kv.Value
 ' -------------------------------------- АИ-8А/У ----------------------------------------------
-' -------------------------------------- АИ-8А/Н ----------------------------------------------
-' -------------------------------------- Монтажная площадка тип1 ----------------------------------------------
-' -------------------------------------- Монтажная площадка тип1 ----------------------------------------------
-' -------------------------------------- Монтажная площадка тип1 ----------------------------------------------
-' -------------------------------------- Ш5 Хомут на трубы ----------------------------------------------
-' -------------------------------------- Ш5 Дюбель Алюм ----------------------------------------------
-' -------------------------------------- Ш5 Дюбель Стальн ----------------------------------------------
-' -------------------------------------- УВИ ----------------------------------------------
-' -------------------------------------- Пульт ДУ ----------------------------------------------
-' -------------------------------------- Ключ-ВП (IT) ----------------------------------------------
-' -------------------------------------- Ключ-ВП (СЛ) ----------------------------------------------
-' -------------------------------------- Ключ-ВП (220) ----------------------------------------------
+Set PR_AIU_SH5_1kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=73, columnOffset:=3)
+Set PR_AIU_SH5_2kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=73, columnOffset:=10)
+Set PR_AIU_SH5_3kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=73, columnOffset:=17)
+Set PR_AIU_SH5_4kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=73, columnOffset:=24)
+Set PP_AIU_SH5_1kv = Range("A1").Offset(rowOffset:=69, columnOffset:=12)
+Set PP_AIU_SH5_2kv = Range("A1").Offset(rowOffset:=69, columnOffset:=32)
+Set PP_AIU_SH5_3kv = Range("A1").Offset(rowOffset:=69, columnOffset:=52)
+Set PP_AIU_SH5_4kv = Range("A1").Offset(rowOffset:=69, columnOffset:=72)
+PP_AIU_SH5_1kv.Value = PR_AIU_SH5_1kv.Value
+PP_AIU_SH5_2kv.Value = PR_AIU_SH5_2kv.Value
+PP_AIU_SH5_3kv.Value = PR_AIU_SH5_3kv.Value
+PP_AIU_SH5_4kv.Value = PR_AIU_SH5_4kv.Value
 
+' -------------------------------------- АИ-8А/Н ----------------------------------------------
+Set PR_AIN_SH5_1kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=78, columnOffset:=3)
+Set PR_AIN_SH5_2kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=78, columnOffset:=10)
+Set PR_AIN_SH5_3kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=78, columnOffset:=17)
+Set PR_AIN_SH5_4kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=78, columnOffset:=24)
+Set PP_AIN_SH5_1kv = Range("A1").Offset(rowOffset:=69, columnOffset:=12)
+Set PP_AIN_SH5_2kv = Range("A1").Offset(rowOffset:=69, columnOffset:=32)
+Set PP_AIN_SH5_3kv = Range("A1").Offset(rowOffset:=69, columnOffset:=52)
+Set PP_AIN_SH5_4kv = Range("A1").Offset(rowOffset:=69, columnOffset:=72)
+PP_AIN_SH5_1kv.Value = PR_AIN_SH5_1kv.Value
+PP_AIN_SH5_2kv.Value = PR_AIN_SH5_2kv.Value
+PP_AIN_SH5_3kv.Value = PR_AIN_SH5_3kv.Value
+PP_AIN_SH5_4kv.Value = PR_AIN_SH5_4kv.Value
+' -------------------------------------- Монтажная площадка тип1 ----------------------------------------------
+Set PR_MP_1_SH5_1kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=83, columnOffset:=3)
+Set PR_MP_1_SH5_2kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=83, columnOffset:=10)
+Set PR_MP_1_SH5_3kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=83, columnOffset:=17)
+Set PR_MP_1_SH5_4kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=83, columnOffset:=24)
+Set PP_MP_1_SH5_1kv = Range("A1").Offset(rowOffset:=69, columnOffset:=12)
+Set PP_MP_1_SH5_2kv = Range("A1").Offset(rowOffset:=69, columnOffset:=32)
+Set PP_MP_1_SH5_3kv = Range("A1").Offset(rowOffset:=69, columnOffset:=52)
+Set PP_MP_1_SH5_4kv = Range("A1").Offset(rowOffset:=69, columnOffset:=72)
+PP_MP_1_SH5_1kv.Value = PR_MP_1_SH5_1kv.Value
+PP_MP_1_SH5_2kv.Value = PR_MP_1_SH5_2kv.Value
+PP_MP_1_SH5_3kv.Value = PR_MP_1_SH5_3kv.Value
+PP_MP_1_SH5_4kv.Value = PR_MP_1_SH5_4kv.Value
+' -------------------------------------- Монтажная площадка тип2 ----------------------------------------------
+Set PR_MP_2_SH5_1kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=88, columnOffset:=3)
+Set PR_MP_2_SH5_2kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=88, columnOffset:=10)
+Set PR_MP_2_SH5_3kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=88, columnOffset:=17)
+Set PR_MP_2_SH5_4kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=88, columnOffset:=24)
+Set PP_MP_2_SH5_1kv = Range("A1").Offset(rowOffset:=69, columnOffset:=12)
+Set PP_MP_2_SH5_2kv = Range("A1").Offset(rowOffset:=69, columnOffset:=32)
+Set PP_MP_2_SH5_3kv = Range("A1").Offset(rowOffset:=69, columnOffset:=52)
+Set PP_MP_2_SH5_4kv = Range("A1").Offset(rowOffset:=69, columnOffset:=72)
+PP_MP_2_SH5_1kv.Value = PR_MP_2_SH5_1kv.Value
+PP_MP_2_SH5_2kv.Value = PR_MP_2_SH5_2kv.Value
+PP_MP_2_SH5_3kv.Value = PR_MP_2_SH5_3kv.Value
+PP_MP_2_SH5_4kv.Value = PR_MP_2_SH5_4kv.Value
+' -------------------------------------- Монтажная площадка тип3 ----------------------------------------------
+Set PR_MP_3_SH5_1kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=93, columnOffset:=3)
+Set PR_MP_3_SH5_2kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=93, columnOffset:=10)
+Set PR_MP_3_SH5_3kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=93, columnOffset:=17)
+Set PR_MP_3_SH5_4kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=93, columnOffset:=24)
+Set PP_MP_3_SH5_1kv = Range("A1").Offset(rowOffset:=69, columnOffset:=12)
+Set PP_MP_3_SH5_2kv = Range("A1").Offset(rowOffset:=69, columnOffset:=32)
+Set PP_MP_3_SH5_3kv = Range("A1").Offset(rowOffset:=69, columnOffset:=52)
+Set PP_MP_3_SH5_4kv = Range("A1").Offset(rowOffset:=69, columnOffset:=72)
+PP_MP_3_SH5_1kv.Value = PR_MP_3_SH5_1kv.Value
+PP_MP_3_SH5_2kv.Value = PR_MP_3_SH5_2kv.Value
+PP_MP_3_SH5_3kv.Value = PR_MP_3_SH5_3kv.Value
+PP_MP_3_SH5_4kv.Value = PR_MP_3_SH5_4kv.Value
+' -------------------------------------- Ш5 Хомут на трубы ----------------------------------------------
+Set PR_XOM_SH5_1kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=98, columnOffset:=3)
+Set PR_XOM_SH5_2kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=98, columnOffset:=10)
+Set PR_XOM_SH5_3kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=98, columnOffset:=17)
+Set PR_XOM_SH5_4kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=98, columnOffset:=24)
+Set PP_XOM_SH5_1kv = Range("A1").Offset(rowOffset:=69, columnOffset:=12)
+Set PP_XOM_SH5_2kv = Range("A1").Offset(rowOffset:=69, columnOffset:=32)
+Set PP_XOM_SH5_3kv = Range("A1").Offset(rowOffset:=69, columnOffset:=52)
+Set PP_XOM_SH5_4kv = Range("A1").Offset(rowOffset:=69, columnOffset:=72)
+PP_XOM_SH5_1kv.Value = PR_XOM_SH5_1kv.Value
+PP_XOM_SH5_2kv.Value = PR_XOM_SH5_2kv.Value
+PP_XOM_SH5_3kv.Value = PR_XOM_SH5_3kv.Value
+PP_XOM_SH5_4kv.Value = PR_XOM_SH5_4kv.Value
+' -------------------------------------- Ш5 Дюбель Алюм ----------------------------------------------
+Set PR_D_AL_SH5_1kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=103, columnOffset:=3)
+Set PR_D_AL_SH5_2kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=103, columnOffset:=10)
+Set PR_D_AL_SH5_3kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=103, columnOffset:=17)
+Set PR_D_AL_SH5_4kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=103, columnOffset:=24)
+Set PP_D_AL_SH5_1kv = Range("A1").Offset(rowOffset:=69, columnOffset:=12)
+Set PP_D_AL_SH5_2kv = Range("A1").Offset(rowOffset:=69, columnOffset:=32)
+Set PP_D_AL_SH5_3kv = Range("A1").Offset(rowOffset:=69, columnOffset:=52)
+Set PP_D_AL_SH5_4kv = Range("A1").Offset(rowOffset:=69, columnOffset:=72)
+PP_D_AL_SH5_1kv.Value = PR_D_AL_SH5_1kv.Value
+PP_D_AL_SH5_2kv.Value = PR_D_AL_SH5_2kv.Value
+PP_D_AL_SH5_3kv.Value = PR_D_AL_SH5_3kv.Value
+PP_D_AL_SH5_4kv.Value = PR_D_AL_SH5_4kv.Value
+' -------------------------------------- Ш5 Дюбель Стальн ----------------------------------------------
+Set PR_D_ST_SH5_1kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=108, columnOffset:=3)
+Set PR_D_ST_SH5_2kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=108, columnOffset:=10)
+Set PR_D_ST_SH5_3kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=108, columnOffset:=17)
+Set PR_D_ST_SH5_4kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=108, columnOffset:=24)
+Set PP_D_ST_SH5_1kv = Range("A1").Offset(rowOffset:=69, columnOffset:=12)
+Set PP_D_ST_SH5_2kv = Range("A1").Offset(rowOffset:=69, columnOffset:=32)
+Set PP_D_ST_SH5_3kv = Range("A1").Offset(rowOffset:=69, columnOffset:=52)
+Set PP_D_ST_SH5_4kv = Range("A1").Offset(rowOffset:=69, columnOffset:=72)
+PP_D_ST_SH5_1kv.Value = PR_D_ST_SH5_1kv.Value
+PP_D_ST_SH5_2kv.Value = PR_D_ST_SH5_2kv.Value
+PP_D_ST_SH5_3kv.Value = PR_D_ST_SH5_3kv.Value
+PP_D_ST_SH5_4kv.Value = PR_D_ST_SH5_4kv.Value
+' -------------------------------------- УВИ ----------------------------------------------
+Set PR_UVI_SH5_1kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=113, columnOffset:=3)
+Set PR_UVI_SH5_2kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=113, columnOffset:=10)
+Set PR_UVI_SH5_3kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=113, columnOffset:=17)
+Set PR_UVI_SH5_4kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=113, columnOffset:=24)
+Set PP_UVI_SH5_1kv = Range("A1").Offset(rowOffset:=69, columnOffset:=12)
+Set PP_UVI_SH5_2kv = Range("A1").Offset(rowOffset:=69, columnOffset:=32)
+Set PP_UVI_SH5_3kv = Range("A1").Offset(rowOffset:=69, columnOffset:=52)
+Set PP_UVI_SH5_4kv = Range("A1").Offset(rowOffset:=69, columnOffset:=72)
+PP_UVI_SH5_1kv.Value = PR_UVI_SH5_1kv.Value
+PP_UVI_SH5_2kv.Value = PR_UVI_SH5_2kv.Value
+PP_UVI_SH5_3kv.Value = PR_UVI_SH5_3kv.Value
+PP_UVI_SH5_4kv.Value = PR_UVI_SH5_4kv.Value
+' -------------------------------------- Пульт ДУ ----------------------------------------------
+Set PR_PDU_SH5_1kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=118, columnOffset:=3)
+Set PR_PDU_SH5_2kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=118, columnOffset:=10)
+Set PR_PDU_SH5_3kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=118, columnOffset:=17)
+Set PR_PDU_SH5_4kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=118, columnOffset:=24)
+Set PP_PDU_SH5_1kv = Range("A1").Offset(rowOffset:=69, columnOffset:=12)
+Set PP_PDU_SH5_2kv = Range("A1").Offset(rowOffset:=69, columnOffset:=32)
+Set PP_PDU_SH5_3kv = Range("A1").Offset(rowOffset:=69, columnOffset:=52)
+Set PP_PDU_SH5_4kv = Range("A1").Offset(rowOffset:=69, columnOffset:=72)
+PP_PDU_SH5_1kv.Value = PR_PDU_SH5_1kv.Value
+PP_PDU_SH5_2kv.Value = PR_PDU_SH5_2kv.Value
+PP_PDU_SH5_3kv.Value = PR_PDU_SH5_3kv.Value
+PP_PDU_SH5_4kv.Value = PR_PDU_SH5_4kv.Value
+' -------------------------------------- Ключ-ВП (IT) ----------------------------------------------
+Set PR_Key_IT_SH5_1kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=123, columnOffset:=3)
+Set PR_Key_IT_SH5_2kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=123, columnOffset:=10)
+Set PR_Key_IT_SH5_3kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=123, columnOffset:=17)
+Set PR_Key_IT_SH5_4kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=123, columnOffset:=24)
+Set PP_Key_IT_SH5_1kv = Range("A1").Offset(rowOffset:=69, columnOffset:=12)
+Set PP_Key_IT_SH5_2kv = Range("A1").Offset(rowOffset:=69, columnOffset:=32)
+Set PP_Key_IT_SH5_3kv = Range("A1").Offset(rowOffset:=69, columnOffset:=52)
+Set PP_Key_IT_SH5_4kv = Range("A1").Offset(rowOffset:=69, columnOffset:=72)
+PP_Key_IT_SH5_1kv.Value = PR_Key_IT_SH5_1kv.Value
+PP_Key_IT_SH5_2kv.Value = PR_Key_IT_SH5_2kv.Value
+PP_Key_IT_SH5_3kv.Value = PR_Key_IT_SH5_3kv.Value
+PP_Key_IT_SH5_4kv.Value = PR_Key_IT_SH5_4kv.Value
+' -------------------------------------- Ключ-ВП (СЛ) ----------------------------------------------
+Set PR_Key_SL_SH5_1kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=128, columnOffset:=3)
+Set PR_Key_SL_SH5_2kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=128, columnOffset:=10)
+Set PR_Key_SL_SH5_3kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=128, columnOffset:=17)
+Set PR_Key_SL_SH5_4kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=128, columnOffset:=24)
+Set PP_Key_SL_SH5_1kv = Range("A1").Offset(rowOffset:=69, columnOffset:=12)
+Set PP_Key_SL_SH5_2kv = Range("A1").Offset(rowOffset:=69, columnOffset:=32)
+Set PP_Key_SL_SH5_3kv = Range("A1").Offset(rowOffset:=69, columnOffset:=52)
+Set PP_Key_SL_SH5_4kv = Range("A1").Offset(rowOffset:=69, columnOffset:=72)
+PP_Key_SL_SH5_1kv.Value = PR_Key_SL_SH5_1kv.Value
+PP_Key_SL_SH5_2kv.Value = PR_Key_SL_SH5_2kv.Value
+PP_Key_SL_SH5_3kv.Value = PR_Key_SL_SH5_3kv.Value
+PP_Key_SL_SH5_4kv.Value = PR_Key_SL_SH5_4kv.Value
+' -------------------------------------- Ключ-ВП (220) ----------------------------------------------
+Set PR_Key_220_SH5_1kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=133, columnOffset:=3)
+Set PR_Key_220_SH5_2kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=133, columnOffset:=10)
+Set PR_Key_220_SH5_3kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=133, columnOffset:=17)
+Set PR_Key_220_SH5_4kv = wbPR.Sheets("2025 г.").Range("A1").Offset(rowOffset:=133, columnOffset:=24)
+Set PP_Key_220_SH5_1kv = Range("A1").Offset(rowOffset:=69, columnOffset:=12)
+Set PP_Key_220_SH5_2kv = Range("A1").Offset(rowOffset:=69, columnOffset:=32)
+Set PP_Key_220_SH5_3kv = Range("A1").Offset(rowOffset:=69, columnOffset:=52)
+Set PP_Key_220_SH5_4kv = Range("A1").Offset(rowOffset:=69, columnOffset:=72)
+PP_Key_220_SH5_1kv.Value = PR_Key_220_SH5_1kv.Value
+PP_Key_220_SH5_2kv.Value = PR_Key_220_SH5_2kv.Value
+PP_Key_220_SH5_3kv.Value = PR_Key_220_SH5_3kv.Value
+PP_Key_220_SH5_4kv.Value = PR_Key_220_SH5_4kv.Value
 
 
 
