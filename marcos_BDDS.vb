@@ -21,7 +21,35 @@ Public Const Offset_Column_final_warehouse_balance1kv       As Integer = 16    '
 Public Const Offset_Columns_Group_1kvartal                  As Integer = 17    ' начало группы стобцов месяцев 1 кв.2025 + группа Аванс/Ок.расчет/Примечание для 1 квартала 2025г
 Public Const Size_Columns_Group_1kvartal                    As Integer = 13    ' длина групп Columns_Group_1kvartal
 
-
+'==================================================================================================================================
+' Функция запрашивает пользователя указать файл в папках для последющей обработки
+Public Function ShowFileDialog() As String 
+    Dim oFD As FileDialog
+        Dim x, lf As Long
+        'назначаем переменной ссылку на экземпляр диалога
+        Set oFD = Application.FileDialog(msoFileDialogFilePicker)
+        With oFD 'используем короткое обращение к объекту
+        'так же можно без oFD
+        'With Application.FileDialog(msoFileDialogFilePicker)
+            .AllowMultiSelect = False
+            .Title = "Выбрать файлы отчетов" 'заголовок окна диалога
+            .Filters.Clear 'очищаем установленные ранее типы файлов
+            .Filters.Add "Excel files", "*.xls*;*.xla*", 1 'устанавливаем возможность выбора только файлов Excel
+            ' .Filters.Add "Text files", "*.txt", 2 'добавляем возможность выбора текстовых файлов
+            .FilterIndex = 1 'устанавливаем тип файлов по умолчанию - Excel files
+            .InitialFileName = "С:\Temp\" 'назначаем папку отображения и имя файла по умолчанию
+            .InitialView = msoFileDialogViewDetails 'вид диалогового окна(доступно 9 вариантов)
+            If .Show = 0 Then Exit Function 'показывает диалог
+            'цикл по коллекции выбранных в диалоге файлов
+            For lf = 1 To .SelectedItems.Count
+                x = .SelectedItems(lf) 'считываем полный путь к файлу
+                Workbooks.Open x 'открытие книги
+                'можно также без х
+                'Workbooks.Open .SelectedItems(lf)
+            Next
+        End With
+        ShowFileDialog = oFD
+End Function
 
 '==================================================================================================================================
 ' Функция скрывает столбец или группу столбцов
@@ -776,9 +804,10 @@ Range("A1").Value = MODE_INPUT_DATA
 MsgBox "Работа макроса закончена"
 End Sub
 
-    
-
-
+Sub MSK_INPUT_DATA_FROM_VP()
+    Dim srt as String
+    srt = ShowFileDialog()
+End Sub
 
 '==================================================================================================================================
 '============================================================    Режим Заполнения данными из файла Выпуска продукции   ========================================
@@ -791,6 +820,8 @@ Sub MSK_INPUT_DATA_FROM_VP()
 
 Dim wbPR As Workbook
 ' Dim wbPP As Workbook
+
+
 
 Set wbPR = Workbooks.Open("План_реализации_2025_230725.xlsx", , True)
 ' Set wbPP = Workbooks("План платежей ПрО_2025_25.12.05.xlsm")
